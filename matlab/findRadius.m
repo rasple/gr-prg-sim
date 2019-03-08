@@ -20,8 +20,27 @@ R_FR = zeros(size(tv));
         R_FR(isnan(R_FR)|isinf(R_FR)) = 0.0;
         R_FL(isnan(R_FL)|isinf(R_FL)) = 0.0;
     
-    plot(tv, R_RR, tv, R_RL, tv, R_FR, tv, R_FL)
+    %plot(tv, R_RR, tv, R_RL, tv, R_FR, tv, R_FL)
     
+    %Calculating with pythogras and matrix op
+    w_m=zeros(size(tv));
+    w_m(:,1) = w;
+    r_hl=(w_m./((v_hr./v_hl)-1));
+    r_hr=r_hl+w;
+    r_fr=sqrt(1.53^2 + r_hr.^2);
+    r_fl=sqrt(1.53^2 + r_hl.^2)
+
+
+    %Plotting
+    subplot(2,2,1);
+    plot(tv,R_FL);
+    subplot(2,2,2);
+    plot(tv,R_FR);
+    subplot(2,2,3);
+    plot(tv, R_RL);
+    subplot(2,2,4);
+    plot(tv,R_RR);
+
     R_RR = [tv, R_RR]
     R_RL = [tv, R_RL]
     R_FR = [tv, R_FR]
