@@ -28,3 +28,5 @@ vfr_simulink = [tv, vfr./3.6];
 
 % Get radiuses
 [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv);
+
+% Random Number 
