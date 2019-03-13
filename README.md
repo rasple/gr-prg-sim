@@ -22,3 +22,7 @@
 |  Sum (hours) | 9 | 16,08 | 27,67 |
 |  Result (min) | 1010 |  |  |
 |  Result (hours) | 16,83 |  |  |
+
+# D4
+
+If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop.
