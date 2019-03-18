@@ -11,22 +11,23 @@
 
 matrix = load('curve.mat')
 
-w=2.65;
-b=1.53;
+b=2.65;
+w=1.53;
 
 vrl = matrix.vrl;
 vrr = matrix.vrr;
 vfl = matrix.vfl;
 vfr = matrix.vfr;
 tv = matrix.tv;
+sw = matrix.sw
 
-% Get v in m/s
-vrl_simulink = [tv, vrl./3.6];
-vrr_simulink = [tv, vrr./3.6];
-vfl_simulink = [tv, vfl./3.6];
-vfr_simulink = [tv, vfr./3.6];
+vrl_simulink = [tv, vrl];
+vrr_simulink = [tv, vrr];
+vfl_simulink = [tv, vfl];
+vfr_simulink = [tv, vfr];
+
 
 % Get radiuses
-[R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv);
+[R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw);
 
 % Random Number 

@@ -1,6 +1,8 @@
 # Tire Pressure Monitoring
 
-## Three Point estimates in Minutes
+## D1
+
+### Three Point estimates in Minutes
 
 |  Task No. | Best Case | Likely Case | Worst Case |
 | --- | --- | --- | --- |
@@ -23,6 +25,37 @@
 |  Result (min) | 1010 |  |  |
 |  Result (hours) | 16,83 |  |  |
 
-# D4
+## D2
+
+Given the formulas 
+
+$$R_{RR} = W + R_{RL}$$
+
+and
+
+$$\frac{V_x}{V_y} = \frac{R_x}{R_y}$$
+
+and velocities for all the wheels during the entire duration of the test data one can determine the curve radiuses easily as such:
+
+$$R_{RL} = \frac{W}{\frac{V_{RR}}{V_{RL}}-1}$$
+
+$$R_{RR} = \frac{R_{RL} \cdot V_{RR}}{V_{RL}}$$
+
+$$R_{FR} = \frac{R_{RL} \cdot V_{FR}}{V_{RL}}$$
+
+$$R_{FL} = \frac{R_{RL} \cdot V_{FL}}{V_{RL}}$$
+
+(See findRadius.m)
+
+Result:
+
+![radiuses]('')
+
+## D3
+
+!()
+
+## D4
 
 If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop.
+
