@@ -33,7 +33,27 @@ vfr_simulink = [tv, vfr];
 % Generate own tire velocity data for testing using randomNumberGenerator()
 % Will generate data up to 80 km/h per wheel
 
-vrl_rand = randomNumberGenerator(5, 3, 80, 1, 56093)
-vrr_rand = randomNumberGenerator(5, 3, 80, 2, 56093)
-vfl_rand = randomNumberGenerator(5, 3, 80, 3, 56093)
-vfr_rand = randomNumberGenerator(5, 3, 80, 4, 56093)
+% Amount of data points
+n = 1000
+
+vrl_rand = randomNumberGenerator(5, 3, 80, 1, n);
+vrr_rand = randomNumberGenerator(5, 3, 80, 2, n);
+vfl_rand = randomNumberGenerator(5, 3, 80, 3, n);
+vfr_rand = randomNumberGenerator(5, 3, 80, 4, n);
+
+figure('Name', 'Random Speeds', 'NumberTitle', 'off')
+subplot(4,1,1)
+plot(tv(1:n), vrl_rand)
+title(V_{RL, rand})
+
+subplot(4,1,2)
+plot(tv(1:n), vrr_rand)
+title(V_{RR, rand})
+
+subplot(4,1,3)
+plot(tv(1:n), vfl_rand)
+title(V_{FL, rand})
+
+subplot(4,1,4)
+plot(tv(1:n), vfr_rand)
+title(V_{FR, rand})
