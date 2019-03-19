@@ -1,15 +1,16 @@
-function [random] = randomNumberGenerator(a, c, m, seed, n)
+function [dataset] = randomNumberGenerator(a, min, max, seed, n)
 % Generater random test data for D5
 % seed = X(0)
 % n = length
 % a,c,m according to formula of task D5
 
 % Preallocate return array
-random = zeros(n)
+dataset = zeros(1, n);
 % Set seed
-random(1) = seed
+dataset(1) = seed;
 
-for i = 2:n
-    random(i) = mod(round((a * random(i-1) + c)), round(m))
+for i = 2:1:n
+    dataset(i) = mod(round((a * dataset(i-1) + min)), round(max))
+    %fprintf('(%d * %d + %d) mod %d\n',a,dataset(i-1),c,round(max))
 end
 
