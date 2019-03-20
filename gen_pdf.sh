@@ -1,2 +1,2 @@
 #!/bin/env sh
-pandoc -f markdown README.md -o README.pdf
+pandoc -V colorlinks -f markdown README.md -o README.pdf
