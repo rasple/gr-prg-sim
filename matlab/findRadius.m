@@ -2,19 +2,26 @@
 
 function [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw)
 
-R_RL = zeros(size(tv));
-R_RR = zeros(size(tv));
-R_FL = zeros(size(tv));
-R_FR = zeros(size(tv));
-
-    for i = 1:length(tv)
+%R_RL = zeros(size(tv));
+%R_RR = zeros(size(tv));
+%R_FL = zeros(size(tv));
+%R_FR = zeros(size(tv));
+%for i = 1:length(tv)
     % Calculate radiuses
-        R_RL(i) = w/((vrr(i) / vrl(i)) - 1);
-        R_RR(i) = (R_RL(i) * vrr(i)) / vrl(i);
-        R_FR(i) = (R_RL(i) * vfr(i)) / vrl(i);
-        R_FL(i) = (R_RL(i) * vfl(i)) / vrl(i);
+      %  R_RL(i) = w/((vrr(i) / vrl(i)) - 1);
+      %  R_RR(i) = (R_RL(i) * vrr(i)) / vrl(i);
+      % R_FR(i) = (R_RL(i) * vfr(i)) / vrl(i);
+      %  R_FL(i) = (R_RL(i) * vfl(i)) / vrl(i);
 
-    end
+%end
+    w_m=zeros(size(tv));
+    w_m(:,1) = w;
+    R_RL=(w_m./((vrr./vrl)-1));
+    R_RR=R_RL+w;
+    R_FR=(sqrt(1.53^2 + R_RR.^2)) .*sign(R_RR); % sign function ensures that all signs are the same
+    R_FL=(sqrt(1.53^2 + R_RL.^2)) .*sign(R_RR);
+
+    
     
     % Filter bad values
     R_RR(isnan(R_RR)|isinf(R_RR)) = 0.0;
@@ -24,13 +31,6 @@ R_FR = zeros(size(tv));
 
     %plot(tv, R_RR, tv, R_RL, tv, R_FR, tv, R_FL)
 
-    %Calculating with pythogras and matrix op
-    %w_m=zeros(size(tv));
-    %w_m(:,1) = w;
-    %r_hl=(w_m./((v_hr./v_hl)-1));
-    %r_hr=r_hl+w;
-    %r_fr=sqrt(1.53^2 + r_hr.^2);
-    %r_fl=sqrt(1.53^2 + r_hl.^2)
 
 
     %Plotting
