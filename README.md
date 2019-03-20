@@ -31,6 +31,8 @@
 
 ## D2
 
+Files: findRadius.m
+
 Given the formulas 
 
 $$R_{RR} = W + R_{RL}$$
@@ -49,11 +51,44 @@ $$R_{FR} = \frac{R_{RL} \cdot V_{FR}}{V_{RL}}$$
 
 $$R_{FL} = \frac{R_{RL} \cdot V_{FL}}{V_{RL}}$$
 
-(See findRadius.m)
+Another approach which we finally chose is to use:
+
+$$R_{RL} = \frac{W}{\frac{V_{RR}}{V_{RL}}-1}$$
+
+$$R_{RR} = R_{RL} + W$$
+
+$$R_{FR} = \sqrt{W^2 + R_{RR}^2} \cdot signum(R_{RR})$$
+
+$$R_{FL} = \sqrt{W^2 + R_{RL}^2} \cdot signum(R_{RR})$$
+
+In MatLab:
+
+```matlab
+w_m=zeros(size(tv));
+w_m(:,1) = w;
+R_RL=(w_m./((vrr./vrl)-1));
+R_RR=R_RL+w;
+% sign function ensures that all signs are the same
+R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR); 
+R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
+```
+
+
+
+
+For the simulink simulation and to prevent errors, faulty values like inf an NaN are replaced with 0.
+
+```matlab
+% Filter bad values
+R_RR(isnan(R_RR)|isinf(R_RR)) = 0.0;
+R_RL(isnan(R_RL)|isinf(R_RL)) = 0.0;
+R_FR(isnan(R_FR)|isinf(R_FR)) = 0.0;
+R_FL(isnan(R_FL)|isinf(R_FL)) = 0.0;
+```
 
 Result:
 
-![radiuses]('')
+![radiuses](https://github.com/rasple/gr-prg-sim/raw/master/images/d2.png)
 
 ## D3
 
