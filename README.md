@@ -73,10 +73,7 @@ R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR);
 R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 ```
 
-
-
-
-For the simulink simulation and to prevent errors, faulty values like inf an NaN are replaced with 0.
+For the simulink simulation and to prevent errors, bad values like inf an NaN are replaced with 0.
 
 ```matlab
 % Filter bad values
@@ -92,9 +89,27 @@ Result:
 
 ## D3
 
+Files: D3.slx
+
+The simulink model for D3 is provided with the velocities of the respective wheels of the vehicle. It converts the values that are given in $\frac{km}{h}$ into $\frac{m}{s}$ by dividing by 3.6. As to the Requirement R2, we think there are at least two interpretations of the word "imbalance". Both are present in the simulink model.
+
+![D3 Model](https://github.com/rasple/gr-prg-sim/raw/master/images/D3_model.png)
+
+### First Interpretation
+
+If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. This produces the following result:
+
+![D3 MinMax](https://github.com/rasple/gr-prg-sim/raw/master/images/D3minmax.png)
+
+### Second Interpretation
+
+The maximum and minimum velocities are compared to the average of all velocities. If either the minimum or maximum velocity differs by 0.5% an imbalance is detected. This produces the following result:
+
+![D3 Average](https://github.com/rasple/gr-prg-sim/raw/master/images/D3average.png)
+
 ## D4
 
-If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop.
+If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities.
 
 ## D5
 
