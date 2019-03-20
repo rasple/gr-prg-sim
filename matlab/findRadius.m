@@ -18,8 +18,9 @@ function [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw)
     w_m(:,1) = w;
     R_RL=(w_m./((vrr./vrl)-1));
     R_RR=R_RL+w;
-    R_FR=(sqrt(1.53^2 + R_RR.^2)) .*sign(R_RR); % sign function ensures that all signs are the same
-    R_FL=(sqrt(1.53^2 + R_RL.^2)) .*sign(R_RR);
+    % sign function ensures that all signs are the same
+    R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR); 
+    R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 
     
     
