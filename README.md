@@ -1,11 +1,11 @@
 # Tire Pressure Monitoring
 
-### Matrikelnummern:
-* 4588745 [email](mailto:it16078@lehre.dhbw-stuttgart.de)
-* 2384618 [email](mailto:t16029@lehre.dhbw-stuttgart.de)
-
-
 All of the matlab exercises can be run by running script.m.
+
+### Matrikelnummern:
+
+* 4588745 [Email](mailto:it16078@lehre.dhbw-stuttgart.de)
+* 2384618 [Email](mailto:it16029@lehre.dhbw-stuttgart.de)
 
 ## D1
 
