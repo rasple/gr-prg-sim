@@ -1,6 +1,59 @@
 classType components.Component
 blockdiagramSpecification Main {
 	methodBody calc {
-		outPin active
+		outPin active {
+			connection_2, connection_4
+		}
+	}
+	complexIdentifier warningFunction_instance at (261, 161) size (14, 11) {
+		label at (0, 1)
+		methodCall components.warningFunction.warningFunctionStatemachineTrigger {
+			methodVoidPin at (top, 0) sequenceCall at (-14, -36) {
+				inPin connection_1 {
+					bendpoints (10, 0)
+				}
+			}
+		}
+		elementCall (components.warningFunction.dt_) {
+			argumentPin at (left, 3) connection_5
+			sequenceCall {
+				inPin connection_4
+			}
+		}
+	}
+	simpleIdentifier change at (111, 135) {
+		label at (0, -1)
+		inPin outPin sequenceCall {
+			inPin
+		}
+	}
+	if at (191, 131) {
+		inPin connection_6 {
+			bendpoints (20, 0), (20, 50)
+		}
+		ifControlFlowOutPin {
+			connection_1
+		}
+		sequenceCall {
+			inPin connection_2
+		}
+	}
+	simpleIdentifier components.DeltaTimeService.deltaT at (181, 195) {
+		label at (0, -1)
+		inPin outPin {
+			connection_5
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier c at (111, 85) {
+		label at (0, -1)
+		outPin {
+			connection_6
+		}
+		sequenceCall {
+			inPin
+		}
 	}
 }
