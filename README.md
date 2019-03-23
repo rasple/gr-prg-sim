@@ -1,6 +1,9 @@
 # Tire Pressure Monitoring
 
+All of the matlab exercises can be run by running script.m.
+
 ### Matrikelnummern:
+
 * 4588745 [Email](mailto:it16078@lehre.dhbw-stuttgart.de)
 * 2384618 [Email](mailto:it16029@lehre.dhbw-stuttgart.de)
 
@@ -25,9 +28,9 @@
 |  D13* | 20 | 40 | 60 |
 |  D14* | 30 | 50 | 70 |
 |  Sum (min) | 540 | 965 | 1660 |
-|  Sum (hours) | 9 | 16,08 | 27,67 |
+|  Sum (hours) | 9 | 16.08 | 27.67 |
 |  Result (min) | 1010 |  |  |
-|  Result (hours) | 16,83 |  |  |
+|  Result (hours) | 16.83 |  |  |
 
 ## D2
 
@@ -51,7 +54,7 @@ $$R_{FR} = \frac{R_{RL} \cdot V_{FR}}{V_{RL}}$$
 
 $$R_{FL} = \frac{R_{RL} \cdot V_{FL}}{V_{RL}}$$
 
-Another approach which we finally chose is to use:
+Another approach is the pythagoras formula which we ended up using in our final version.
 
 $$R_{RL} = \frac{W}{\frac{V_{RR}}{V_{RL}}-1}$$
 
@@ -109,7 +112,9 @@ The maximum and minimum velocities are compared to the average of all velocities
 
 ## D4
 
-If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities.
+If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities. A delay block is used to get a $\delta S = S(t) - S(t-10)$ which is the traveled speed in the last 10 time units. As in D3 there are two approaches to detecting an "imbalance" both of which can be seen below.
+
+![D3 Model](https://github.com/rasple/gr-prg-sim/raw/master/images/D3_model.png)
 
 ## D5
 
