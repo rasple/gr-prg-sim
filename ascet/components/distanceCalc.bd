@@ -1,0 +1,60 @@
+classType components.distanceCalc
+blockdiagramSpecification Main {
+	methodBody calcDistance {
+		outPin active {
+			connection_5
+		}
+	}
+	methodArgumentIdentifier calcDistance.speed at (131, 45) {
+		label at (0, -1)
+		outPin {
+			connection_1
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier calcDistance.Time at (131, 125) {
+		label at (0, -1)
+		outPin {
+			connection_4
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	literal Numeric "3.6" at (131, 93) size (49, 0) {
+		outPin {
+			connection_2
+		}
+	}
+	division at (271, 66) {
+		inPin connection_1 {
+			bendpoints (50, 0), (50, 20)
+		}
+		inPin connection_2 {
+			bendpoints (40, 0), (40, -10)
+		}
+		outPin {
+			connection_3
+		}
+	}
+	multiplication at (351, 86) {
+		inPin connection_3 {
+			bendpoints (20, 0), (20, 10)
+		}
+		inPin connection_4 {
+			bendpoints (80, 0), (80, -20)
+		}
+		outPin {
+			connection_6
+		}
+	}
+	return at (421, 95) {
+		label at (0, 0)
+		inPin connection_6
+		sequenceCall {
+			inPin connection_5
+		}
+	}
+}
