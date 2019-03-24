@@ -23,7 +23,7 @@ class warningFunction {
 
 		state shortState {
 			entry {
-				restTime = 0.8;
+				restTime = 2.0;
 				on = true;
 			}
 			static {
@@ -50,7 +50,7 @@ class warningFunction {
 
 		state longState {
 			entry {
-				restTime = 1.6;
+				restTime = 4.0;
 				on = true;
 			}
 			static {
@@ -63,6 +63,14 @@ class warningFunction {
 		}
 
 		state mockState {
+			entry {
+				counter = 0;
+				restTime = 0.1;
+			}
+			static {
+				restTime -= dt_;
+			}
+			transition restTime < 0.0 to shortState;
 		}
 	}
 }
