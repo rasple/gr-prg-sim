@@ -9,6 +9,7 @@
 %                                                                                                                               __/ |
 %                                                                                                                              |___/ 
 
+% D2
 matrix = load('curve.mat')
 
 b=2.65;
@@ -30,30 +31,44 @@ vfr_simulink = [tv, vfr];
 % Get radiuses
 [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw);
 
+% D3
+
+sim('D3', 700)
+
+% D4
+
+sim('D4', 700)
+
+% D5
+
 % Generate own tire velocity data for testing using randomNumberGenerator()
 % Will generate data up to 80 km/h per wheel
 
 % Amount of data points
 n = 1000
 
-vrl_rand = randomNumberGenerator(5, 3, 80, 1, n);
-vrr_rand = randomNumberGenerator(5, 3, 80, 2, n);
-vfl_rand = randomNumberGenerator(5, 3, 80, 3, n);
-vfr_rand = randomNumberGenerator(5, 3, 80, 4, n);
+% Create random test data
+vrl_simulink_rand = randomNumberGenerator(5, 3, 80, 1, n);
+vrr_simulink_rand = randomNumberGenerator(5, 3, 80, 2, n);
+vfl_simulink_rand = randomNumberGenerator(5, 3, 80, 3, n);
+vfr_simulink_rand = randomNumberGenerator(5, 3, 80, 4, n);
 
 figure('Name', 'Random Speeds', 'NumberTitle', 'off')
 subplot(4,1,1)
-plot(tv(1:n), vrl_rand)
+plot(tv(1:n), vrl_simulink)
 title(V_{RL, rand})
 
 subplot(4,1,2)
-plot(tv(1:n), vrr_rand)
+plot(tv(1:n), vrr_simulink)
 title(V_{RR, rand})
 
 subplot(4,1,3)
-plot(tv(1:n), vfl_rand)
+plot(tv(1:n), vfl_simulink)
 title(V_{FL, rand})
 
 subplot(4,1,4)
-plot(tv(1:n), vfr_rand)
+plot(tv(1:n), vfr_simulink)
 title(V_{FR, rand})
+
+% D6
+

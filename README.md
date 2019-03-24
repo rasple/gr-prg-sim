@@ -9,7 +9,7 @@ All of the matlab exercises can be run by running script.m.
 
 \newpage
 
-### Matrikelnummern:
+### Authors info
 
 * 4588745 [Email](mailto:it16078@lehre.dhbw-stuttgart.de)
 * 2384618 [Email](mailto:it16029@lehre.dhbw-stuttgart.de)
@@ -166,3 +166,13 @@ vfr_rand = randomNumberGenerator(5, 3, 80, 4, 56093)
 
 ```
 ___
+
+##D12
+
+
+
+##D13
+
+Using steering wheel angle and lateral acceleration it should be possible to remove bias in the wheels speeds caused by curve driving. However, seeing as there are almost always significant intervals of straight driving, it would be easier to just use these to measure (relatively) unbiased wheel speeds for pressure monitoring.
+
+##D14
