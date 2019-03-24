@@ -1,0 +1,176 @@
+classType components.comparePressure
+blockdiagramSpecification Main {
+	methodBody comp {
+		outPin active {
+			connection_25
+		}
+	}
+	methodArgumentIdentifier comp.d_fl at (161, 85) {
+		label at (0, -1)
+		outPin {
+			connection_7, connection_11, connection_1
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier comp.d_fr at (161, 125) {
+		label at (0, -1)
+		outPin {
+			connection_8, connection_12, connection_2
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier comp.d_rl at (161, 155) {
+		label at (0, -1)
+		outPin {
+			connection_9, connection_13, connection_3
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier comp.d_rr at (161, 195) {
+		label at (0, -1)
+		outPin {
+			connection_10, connection_14, connection_4
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	addition at (351, 96) {
+		inPin connection_1 {
+			bendpoints (60, 0), (60, 10)
+		}
+		inPin connection_2 {
+			bendpoints (60, 0), (60, -10), (150, -10)
+		}
+		inPin connection_3 {
+			bendpoints (70, 0), (70, -30)
+		}
+		inPin connection_4 {
+			bendpoints (70, 0), (70, -30), (150, -30)
+		}
+		outPin {
+			connection_5
+		}
+	}
+	division at (481, 106) {
+		inPin connection_5 {
+			bendpoints (40, 0), (40, -10)
+		}
+		inPin connection_6 {
+			bendpoints (10, 0)
+		}
+		outPin {
+			connection_18, connection_15
+		}
+	}
+	literal Numeric "4.0" at (421, 143) size (49, 0) {
+		outPin {
+			connection_6
+		}
+	}
+	minimum at (461, 216) {
+		inPin connection_7 {
+			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (260, 70)
+		}
+		inPin connection_8 {
+			bendpoints (60, 0), (60, -10), (100, -10), (100, 40), (260, 40)
+		}
+		inPin connection_9 {
+			bendpoints (70, 0), (70, 30), (260, 30)
+		}
+		inPin connection_10 {
+			bendpoints (50, 0), (50, 30), (260, 30)
+		}
+		outPin {
+			connection_16
+		}
+	}
+	maximum at (461, 276) {
+		inPin connection_11 {
+			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (190, 70), (190, 130), (260, 130)
+		}
+		inPin connection_12 {
+			bendpoints (60, 0), (60, -10), (100, -10), (100, 40), (180, 40), (180, 100), (260, 100)
+		}
+		inPin connection_13 {
+			bendpoints (70, 0), (70, 30), (160, 30), (160, 90), (260, 90)
+		}
+		inPin connection_14 {
+			bendpoints (50, 0), (50, 30), (120, 30), (120, 70), (260, 70)
+		}
+		outPin {
+			connection_17
+		}
+	}
+	greaterOrEqual at (661, 156) {
+		inPin connection_21
+		inPin connection_20 {
+			bendpoints (10, 0), (10, -150)
+		}
+		outPin {
+			connection_23
+		}
+	}
+	greaterOrEqual at (661, 226) {
+		inPin connection_22 {
+			bendpoints (20, 0), (20, -30)
+		}
+		inPin connection_19 {
+			bendpoints (10, 0), (10, -80)
+		}
+		outPin {
+			connection_24
+		}
+	}
+	literal Numeric "1.005" at (591, 323) size (49, 0) {
+		outPin {
+			connection_20, connection_19
+		}
+	}
+	division at (561, 146) {
+		inPin connection_15 {
+			bendpoints (20, 0), (20, 30)
+		}
+		inPin connection_16 {
+			bendpoints (30, 0), (30, -70)
+		}
+		outPin {
+			connection_21
+		}
+	}
+	division at (571, 246) {
+		inPin connection_17 {
+			bendpoints (40, 0), (40, -50)
+		}
+		inPin connection_18 {
+			bendpoints (0, 80), (50, 80)
+		}
+		outPin {
+			connection_22
+		}
+	}
+	or at (741, 186) {
+		inPin connection_23 {
+			bendpoints (20, 0), (20, 20)
+		}
+		inPin connection_24 {
+			bendpoints (20, 0), (20, -30)
+		}
+		outPin {
+			connection_26
+		}
+	}
+	return at (791, 195) {
+		label at (0, 0)
+		inPin connection_26
+		sequenceCall {
+			inPin connection_25
+		}
+	}
+}
