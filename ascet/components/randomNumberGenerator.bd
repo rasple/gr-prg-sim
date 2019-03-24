@@ -1,0 +1,90 @@
+classType components.randomNumberGenerator
+blockdiagramSpecification Main {
+	methodBody random {
+		outPin active {
+			connection_12, connection_9
+		}
+	}
+	methodArgumentIdentifier random.a at (191, 105) {
+		label at (0, -1)
+		outPin {
+			connection_2
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier random.c at (281, 125) {
+		label at (0, -1)
+		outPin {
+			connection_4
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier random.m at (331, 155) {
+		label at (0, -1)
+		outPin {
+			connection_6
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	multiplication at (271, 76) {
+		inPin connection_11 {
+			bendpoints (10, 0), (10, 10)
+		}
+		inPin connection_2 {
+			bendpoints (20, 0), (20, -10)
+		}
+		outPin {
+			connection_3
+		}
+	}
+	addition at (331, 86) {
+		inPin connection_3
+		inPin connection_4 {
+			bendpoints (10, 0)
+		}
+		outPin {
+			connection_5
+		}
+	}
+	modulo at (401, 96) {
+		inPin connection_5
+		inPin connection_6 {
+			bendpoints (0, -20), (30, -20)
+		}
+		outPin {
+			connection_13
+		}
+	}
+	return at (551, 105) {
+		label at (0, 0)
+		inPin connection_14
+		sequenceCall {
+			inPin connection_9
+		}
+	}
+	simpleIdentifier X at (191, 65) {
+		label at (0, -1)
+		inPin outPin {
+			connection_11
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier X at (451, 105) {
+		label at (0, -1)
+		inPin connection_13
+		outPin {
+			connection_14
+		}
+		sequenceCall {
+			inPin connection_12
+		}
+	}
+}

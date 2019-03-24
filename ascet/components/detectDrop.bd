@@ -1,0 +1,170 @@
+classType components.detectDrop
+blockdiagramSpecification Main {
+	methodBody detect {
+		outPin active {
+			connection_13
+		}
+	}
+	complexIdentifier components.distanceCalc at (191, 51) size (14, 8) {
+		label at (0, 1)
+		methodCall components.distanceCalc.calcDistance {
+			argumentPin speed at (left, 0) connection_1
+			argumentPin Time at (left, 1) connection_5 {
+				bendpoints (20, 0), (20, -20)
+			}
+			returnPin at (right, 0) {
+				connection_9
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	complexIdentifier components.distanceCalc at (191, 151) size (14, 8) {
+		label at (0, 1)
+		methodCall components.distanceCalc.calcDistance {
+			argumentPin speed at (left, 0) connection_2
+			argumentPin Time at (left, 1) connection_6 {
+				bendpoints (20, 0), (20, -20)
+			}
+			returnPin at (right, 0) {
+				connection_10
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	complexIdentifier components.distanceCalc at (191, 251) size (14, 8) {
+		label at (0, 1)
+		methodCall components.distanceCalc.calcDistance {
+			argumentPin speed at (left, 0) connection_3
+			argumentPin Time at (left, 1) connection_7 {
+				bendpoints (20, 0), (20, -20)
+			}
+			returnPin at (right, 0) {
+				connection_11
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	complexIdentifier components.distanceCalc at (191, 351) size (14, 8) {
+		label at (0, 1)
+		methodCall components.distanceCalc.calcDistance {
+			argumentPin speed at (left, 0) connection_4
+			argumentPin Time at (left, 1) connection_8 {
+				bendpoints (20, 0), (20, -20)
+			}
+			returnPin at (right, 0) {
+				connection_12
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	methodArgumentIdentifier detect.v_fl at (91, 55) {
+		label at (0, -1)
+		outPin {
+			connection_1
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.v_fr at (91, 155) {
+		label at (0, -1)
+		outPin {
+			connection_2
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.v_rl at (91, 255) {
+		label at (0, -1)
+		outPin {
+			connection_3
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.v_rr at (91, 355) {
+		label at (0, -1)
+		outPin {
+			connection_4
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.deltaTime at (91, 85) {
+		label at (0, -1)
+		outPin {
+			connection_5
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.deltaTime at (91, 185) {
+		label at (0, -1)
+		outPin {
+			connection_6
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.deltaTime at (91, 285) {
+		label at (0, -1)
+		outPin {
+			connection_7
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier detect.deltaTime at (91, 385) {
+		label at (0, -1)
+		outPin {
+			connection_8
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	complexIdentifier components.comparePressure at (481, 171) size (14, 8) {
+		label at (0, 1)
+		methodCall components.comparePressure.comp {
+			argumentPin d_fl at (left, 0) connection_9 {
+				bendpoints (60, 0), (60, 110), (130, 110)
+			}
+			argumentPin d_fr at (left, 1) connection_10 {
+				bendpoints (0, 30)
+			}
+			argumentPin d_rl at (left, 2) connection_11 {
+				bendpoints (60, 0), (60, -60)
+			}
+			argumentPin d_rr at (left, 3) connection_12 {
+				bendpoints (60, 0), (60, -80), (130, -80)
+			}
+			returnPin at (right, 0) {
+				connection_14
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+	}
+	return at (651, 175) {
+		label at (0, 0)
+		inPin connection_14
+		sequenceCall {
+			inPin connection_13
+		}
+	}
+}
