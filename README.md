@@ -41,7 +41,33 @@ All of the matlab exercises can be run by running script.m.
 
 ## D2
 
-Files: findRadius.m
+Files: findRadius.m, script.m
+
+The values of the curve.mat file have to be stripped for the required values. Then the `findRadius()` function located in `findRadius.m` is called to determine the curve radius of the car.
+
+___
+
+```matlab
+b=2.65;
+w=1.53;
+
+vrl = matrix.vrl;
+vrr = matrix.vrr;
+vfl = matrix.vfl;
+vfr = matrix.vfr;
+tv = matrix.tv;
+sw = matrix.sw;
+
+vrl_simulink = [tv, vrl];
+vrr_simulink = [tv, vrr];
+vfl_simulink = [tv, vfl];
+vfr_simulink = [tv, vfr];
+
+
+% Get radiuses
+[R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw);
+```
+___
 
 Given the formulas 
 
@@ -71,7 +97,7 @@ $$R_{FR} = \sqrt{W^2 + R_{RR}^2} \cdot signum(R_{RR})$$
 
 $$R_{FL} = \sqrt{W^2 + R_{RL}^2} \cdot signum(R_{RR})$$
 
-In MatLab:
+In `randomNumberGenerator()`:
 
 ___
 
@@ -86,7 +112,7 @@ R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 ```
 ___
 
-For the simulink simulation and to prevent errors, bad values like inf an NaN are replaced with 0.
+To prevent errors, bad values like inf an NaN are replaced with 0.
 
 ___
 
@@ -100,40 +126,54 @@ R_FL(isnan(R_FL)|isinf(R_FL)) = 0.0;
 
 ___
 
-Result:
+The resulting radiuses for each wheel together with their speeds and steering wheel are pictured below.
 
-![radiuses](images/d2.png)
+![radiuses](images/d2.png)\
 
 ## D3
 
-Files: D3.slx
+Files: D3.slx, script.m
+
 
 The simulink model for D3 is provided with the velocities of the respective wheels of the vehicle. It converts the values that are given in $\frac{km}{h}$ into $\frac{m}{s}$ by dividing by 3.6. As to the Requirement R2, we think there are at least two interpretations of the word "imbalance". Both are present in the simulink model.
 
-![D3 Model](images/D3_model.png)
+![D3 Model](images/D3_model.png)\
 
 ### First Interpretation
 
-If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. This produces the following result:
+If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. A "1" in the blue/purple signal denominates if a tire pressure drop has been detected. The other signals represent the speeds of the respective wheels. This produces the following result:
 
-![D3 MinMax](images/D3minmax.png)
+![D3 MinMax](images/D3minmax.png)\
 
 ### Second Interpretation
 
 The maximum and minimum velocities are compared to the average of all velocities. If either the minimum or maximum velocity differs by 0.5% an imbalance is detected. This produces the following result:
 
-![D3 Average](images/D3average.png)
+![D3 Average](images/D3average.png)\
 
 ## D4
 
-If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities. A delay block is used to get a $\delta S = S(t) - S(t-10)$ which is the traveled speed in the last 10 time units. As in D3 there are two approaches to detecting an "imbalance" both of which can be seen below.
+Files: D4.slx, script.m
 
-![D3 Model](images/D3_model.png)
+If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities. A delay block is used to get a $\delta S = S(t) - S(t-10)$ which is the travelled speed in the last 10 time units. As in [D3][D3] there are two approaches to detecting an "imbalance" both of which can be seen below.
+
+![D4 Model](images/D4_model.png)\
+
+Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation] is pictured in red and [the second][Second Interpretation] is pictured in blue. A "1" means that a pressure drop has been detected.
+
+![D4](images/D4.png)\
+
+Here they are seperately:
+
+![D4_minmax](images/D4_minmax.png)\
+
+![D4_average](images/D4_average.png)\
 
 ## D5
 
-The m and c parameters of the given random number generator are the upper and lower limit for the values generated. An initial value has to be chosen and functions as seed.
+Files: randomNumberGenerator.m, script.m
 
+The m and c parameters of the given random number generator are the upper and lower limit for the values generated. An initial value has to be chosen and functions as seed.
 ___
 
 ```matlab
@@ -152,13 +192,12 @@ dataset(1) = seed;
 
 for i = 2:1:n
     dataset(i) = mod(round((a * dataset(i-1) + min)), round(max))
-    %fprintf('(%d * %d + %d) mod %d\n',a,dataset(i-1),c,round(max))
 end
 ```
 
 ---
 
-By varying this seed, random data for the wheel velocities can be generated by only varying the seed.
+By only varying this seed, random data for the wheel velocities can be generated.
 
 ---
 
@@ -166,12 +205,20 @@ By varying this seed, random data for the wheel velocities can be generated by o
 % Generate own tire velocity data for testing using randomNumberGenerator()
 % Will generate data up to 80 km/h per wheel
 
-vrl_rand = randomNumberGenerator(5, 3, 80, 1, 56093)
-vrr_rand = randomNumberGenerator(5, 3, 80, 2, 56093)
-vfl_rand = randomNumberGenerator(5, 3, 80, 3, 56093)
-vfr_rand = randomNumberGenerator(5, 3, 80, 4, 56093)
+% Amount of data points
+n = 1000;
+
+% Create random test data
+vrl_simulink_noise = randomNumberGenerator(5, 3, 80, 1, n);
+vrr_simulink_noise = randomNumberGenerator(5, 3, 80, 2, n);
+vfl_simulink_noise = randomNumberGenerator(5, 3, 80, 3, n);
+vfr_simulink_noise = randomNumberGenerator(5, 3, 80, 4, n);
 
 ```
+
+Plotted on a graph, the noise looks like this:
+
+![D4_average](images/noise.png)\
 ___
 
 
