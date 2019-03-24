@@ -48,10 +48,10 @@ sim('D4', 700)
 n = 1000
 
 % Create random test data
-vrl_simulink_rand = randomNumberGenerator(5, 3, 80, 1, n);
-vrr_simulink_rand = randomNumberGenerator(5, 3, 80, 2, n);
-vfl_simulink_rand = randomNumberGenerator(5, 3, 80, 3, n);
-vfr_simulink_rand = randomNumberGenerator(5, 3, 80, 4, n);
+vrl_simulink_noise = randomNumberGenerator(5, 3, 80, 1, n);
+vrr_simulink_noise = randomNumberGenerator(5, 3, 80, 2, n);
+vfl_simulink_noise = randomNumberGenerator(5, 3, 80, 3, n);
+vfr_simulink_noise = randomNumberGenerator(5, 3, 80, 4, n);
 
 figure('Name', 'Random Speeds', 'NumberTitle', 'off')
 subplot(4,1,1)

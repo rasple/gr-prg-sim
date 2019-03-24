@@ -73,6 +73,8 @@ $$R_{FL} = \sqrt{W^2 + R_{RL}^2} \cdot signum(R_{RR})$$
 
 In MatLab:
 
+___
+
 ```matlab
 w_m=zeros(size(tv));
 w_m(:,1) = w;
@@ -82,8 +84,11 @@ R_RR=R_RL+w;
 R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR); 
 R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 ```
+___
 
 For the simulink simulation and to prevent errors, bad values like inf an NaN are replaced with 0.
+
+___
 
 ```matlab
 % Filter bad values
@@ -92,6 +97,8 @@ R_RL(isnan(R_RL)|isinf(R_RL)) = 0.0;
 R_FR(isnan(R_FR)|isinf(R_FR)) = 0.0;
 R_FL(isnan(R_FL)|isinf(R_FL)) = 0.0;
 ```
+
+___
 
 Result:
 
@@ -167,12 +174,15 @@ vfr_rand = randomNumberGenerator(5, 3, 80, 4, 56093)
 ```
 ___
 
-##D12
+
+## D12
+
+
+## D13
+
+Using the steering wheel angle and lateral acceleration provided it should be possible to remove bias in the wheels speeds caused by curve driving. However, seeing as there are almost always significant intervals of straight driving, it would be easier to just use these to measure (relatively) unbiased wheel speeds for pressure monitoring.
+
+## D14
 
 
 
-##D13
-
-Using steering wheel angle and lateral acceleration it should be possible to remove bias in the wheels speeds caused by curve driving. However, seeing as there are almost always significant intervals of straight driving, it would be easier to just use these to measure (relatively) unbiased wheel speeds for pressure monitoring.
-
-##D14
