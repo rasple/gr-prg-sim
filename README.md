@@ -200,7 +200,8 @@ for i = 2:1:n
     dataset(i) = mod(round((a * dataset(i-1) + c)), round(m))
 end
 ```
-___
+
+---
 
 According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
 
@@ -261,8 +262,83 @@ The function returns the distance one wheel travels during one time slot. The sp
 
 This function does the same as the average function described in D5.
 
-##
+## D8
 
+
+___
+
+```java
+static class distanceCalcTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertNear(distanceCalc.calcDistance(3.6, 0.5), 0.5, 0.0001);
+		
+	}
+	
+}
+```
+___
+
+For the calcDistance funtion only one test case is necessary. The assert Near is required because the result is from the type real.
+
+___
+
+```java
+static class comparePressureTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertTrue(comparePressure.comp(5.0,5.0,5.0, 5.5));
+		
+	}
+	
+	@Test
+	public void test2(){
+		Assert.assertTrue(comparePressure.comp(3.0,3.0,3.0, 2.5));
+	}
+	
+	@Test
+	public void test3() {
+		Assert.assertFalse(comparePressure.comp(5.0,5.0,5.0, 5.03));
+		
+	}
+	
+	@Test
+	public void test4(){
+		Assert.assertFalse(comparePressure.comp(3.0,3.0,3.0, 2.985));
+	}
+	
+}
+
+```
+___
+
+The comparePressure class is tested with four tests. test1 and test2 test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
+test3 and test4 test that the function returns false if the distances are less than 0.5% apart. With these four tests all possibilities are covered. 
+
+
+___
+
+```java
+static class detectDropTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertFalse(detectDrop.detect(70.2, 70.0, 70.3,69.8,0.01 ));
+	}
+	
+	@Test
+	public void test2() {
+		Assert.assertTrue(detectDrop.detect(75.4, 70.0, 71.0,69.5,0.01 ));
+	}
+	
+}
+```
+___
+
+
+In order to test the detectDrop class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
 
 ## D12
 
