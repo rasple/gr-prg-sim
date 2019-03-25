@@ -7,9 +7,6 @@ date: 20.03.19
 lang: en
 ...
 
-
-All of the matlab exercises can be run by running script.m.
-
 \newpage
 
 ### Authors info
@@ -344,6 +341,8 @@ Using the two imbalance detections from [D3][D3] and [D4][D4] we can detect a ti
 
 ![D6_average](images/D6_average.png)
 
+By varying the seed of the random number generator we can run the simulation with different random data and test its ability to detect tire pressure change.
+
 ## D7 
 
 ![D7_first](images/detectDrop.png)
@@ -408,7 +407,7 @@ static class comparePressureTest{
 ```
 ___
 
-The comparePressure class is tested with four tests. test1 and test2 test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
+The `comparePressure` class is tested with four tests. test1 and test2 test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
 test3 and test4 test that the function returns false if the distances are less than 0.5% apart. With these four tests all possibilities are covered. 
 
 
@@ -431,7 +430,7 @@ static class detectDropTest{
 ___
 
 
-In order to test the detectDrop class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
+In order to test the `detectDrop` class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
 
 
 ## D9
@@ -442,8 +441,7 @@ The warning function sets the lamp on if the a drop is detected and use the stat
 
 ![D9_statemachine](images/state.png)
 
-The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning.
-dt_ is the delta time and an input variable. on is an output.
+The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning. `dt_` is the delta time and an input variable. on is an output.
 
 ___
 
@@ -466,7 +464,7 @@ ___
 
 ![D7_second](images/random.png)
 
-The random number generator uses the formula described in D5. The type int_m is required because otherwise the first expression is always zero.
+The random number generator uses the formula described in [D5][D5]. The type `int_m` is required because otherwise the first expression is always zero.
 
 ___
 
