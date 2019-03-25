@@ -1,7 +1,10 @@
 ---
-title: Tire Pressure Monitoring
-author: 4588745, 2384618
+title: "Tire Pressure Monitoring"
+author: 
+	- 4588745
+	- 2384618
 date: 20.03.19
+lang: en
 ...
 
 
@@ -67,6 +70,7 @@ vfr_simulink = [tv, vfr];
 % Get radiuses
 [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw);
 ```
+
 ___
 
 Given the formulas 
@@ -110,6 +114,7 @@ R_RR=R_RL+w;
 R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR); 
 R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 ```
+
 ___
 
 To prevent errors, bad values like inf an NaN are replaced with 0.
@@ -174,12 +179,13 @@ Here they are seperately:
 Files: randomNumberGenerator.m, script.m
 
 The m and c parameters of the given random number generator are the upper and lower limit for the values generated. An initial value has to be chosen and functions as seed.
+
 ___
 
 ```matlab
 %randomNumberGenerator.m
 
-function [dataset] = randomNumberGenerator(a, min, max, seed, n)
+function [dataset] = randomNumberGenerator(a, c, m, seed, n)
 % Generater random test data for D5
 % seed = X(0)
 % n = length
@@ -191,35 +197,56 @@ dataset = zeros(1, n);
 dataset(1) = seed;
 
 for i = 2:1:n
-    dataset(i) = mod(round((a * dataset(i-1) + min)), round(max))
+    dataset(i) = mod(round((a * dataset(i-1) + c)), round(m))
 end
 ```
 
 ---
 
-By only varying this seed, random data for the wheel velocities can be generated.
+According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
 
----
+1. c and m are relatively prime
+2. a-1 is divisible by all prime factors of m
+3. a-1 is a multiple of 4 if m is a multiple of 4
+4. c is nonzero
+
+Using these rules one can quickly determine four combinations for each wheel which fulfill all requirements.
+
+|a |c |m | 
+|--|--|--|
+|21|23|80|
+| 7|13|81|
+|31|17|90|
+|39|11|76|
+
+The seed can be chosen arbitrarily as there is no rule concerning it.
+___
 
 ```matlab
 % Generate own tire velocity data for testing using randomNumberGenerator()
 % Will generate data up to 80 km/h per wheel
 
 % Amount of data points
-n = 1000;
+n = 100;
 
 % Create random test data
-vrl_simulink_noise = randomNumberGenerator(5, 3, 80, 1, n);
-vrr_simulink_noise = randomNumberGenerator(5, 3, 80, 2, n);
-vfl_simulink_noise = randomNumberGenerator(5, 3, 80, 3, n);
-vfr_simulink_noise = randomNumberGenerator(5, 3, 80, 4, n);
-
+vrl_simulink_noise = randomNumberGenerator(21, 23, 80, 1, n);
+vrr_simulink_noise = randomNumberGenerator(7, 13, 81, 2, n);
+vfl_simulink_noise = randomNumberGenerator(31, 17, 90, 3, n);
+vfr_simulink_noise = randomNumberGenerator(39, 11, 76, 4, n);
 ```
+___
 
-Plotted on a graph, the noise looks like this:
+Plotted on a graph, the pseudo-random noise looks like this:
 
 ![D4_average](images/noise.png)\
-___
+
+
+## D6
+
+Files: D6.slx, script.m
+
+D6.slx is merely a copy of D4.slx that uses the variables `vx_simulink_noise` instead of `vx_simulink`.
 
 
 ## D12
