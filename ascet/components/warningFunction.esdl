@@ -8,11 +8,14 @@ type warningFunctionStatemachineStates is enum {
 };
 
 class warningFunction {
-	boolean on;
-	integer counter;
+	@get
+	private boolean on = false;
+	integer counter = 0;
 	@set
 	private real dt_;
 	real restTime;
+	real base_rate = 0.8;
+	real break_rate = 0.1;
 
 	@generated("statemachine")
 	public void warningFunctionStatemachineTrigger() triggers warningFunctionStatemachine;
@@ -23,7 +26,7 @@ class warningFunction {
 
 		state shortState {
 			entry {
-				restTime = 2.0;
+				restTime = base_rate;
 				on = true;
 			}
 			static {
@@ -37,7 +40,7 @@ class warningFunction {
 
 		state breakState {
 			entry {
-				restTime = 0.1;
+				restTime = break_rate;
 				on = false;
 			}
 			static {
@@ -50,7 +53,7 @@ class warningFunction {
 
 		state longState {
 			entry {
-				restTime = 4.0;
+				restTime = base_rate * 2.0;
 				on = true;
 			}
 			static {
@@ -65,7 +68,7 @@ class warningFunction {
 		state mockState {
 			entry {
 				counter = 0;
-				restTime = 0.1;
+				restTime = break_rate;
 			}
 			static {
 				restTime -= dt_;

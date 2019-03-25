@@ -1,0 +1,22 @@
+<?SCHEMA schemaVersion="1.0"?>
+<Workspace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:///C:/Program%20Files%20(x86)/Common%20Files/ETAS/Experiment%20Environment/3.7/Schemas/EE.Data.Workspace.xsd" xsi:type="ETAS.EE.Data.WorkspaceType">
+  <PluginData xsi:type="ETAS.EE.Data.PluginDataListType">
+    <Item xsi:type="ETAS.EE.Data.PluginDataType" id="ID1765690f-7a72-4b1e-94d0-4716d94dbda8" pluginID="Options" rootFolder="Options_Files">
+      <Documents xsi:type="ETAS.EE.Data.ExternalDocumentListType">
+        <Item xsi:type="ETAS.EE.Data.ExternalDocumentType" id="ID9b3ba5c9-5c16-4b6c-8651-45751ed6c95b" type="" name="Options" file="Options.opt" />
+      </Documents>
+    </Item>
+    <Item xsi:type="ETAS.EE.Data.PluginDataType" id="ID19db595d-bd62-4a27-a7bd-688a2c135261" pluginID="SignalSourceManager" rootFolder="SignalSourceManager_Files">
+      <Documents xsi:type="ETAS.EE.Data.ExternalDocumentListType">
+        <Item xsi:type="ETAS.EE.Data.ExternalDocumentType" id="IDe858907c-5382-4e6b-bcef-3ae8f25718ed" type="" name="SignalSourcesData" file="SignalSources.xml" />
+      </Documents>
+    </Item>
+  </PluginData>
+  <RecentExperiments xsi:type="ETAS.EE.Data.FileReferenceListType">
+    <Item xsi:type="ETAS.EE.Data.FileReferenceType" id="ID053d1995-539c-433f-ba60-b1dd0d5dfcde" path="C:\Users\Simon\ETAS\ASCET-DEVELOPER-7.4.0\workspace\gr-prg-sim\ascet\experiments\Experiments\system\randomtest_PC\randomtest_PC.eex" hintPath="..\..\Experiments\system\randomtest_PC\randomtest_PC.eex" />
+  </RecentExperiments>
+  <WorkspaceInfo xsi:type="ETAS.EE.Data.WorkspaceInfoType">
+    <DateTime xsi:type="ETAS.EE.Data.DateTimeInfoType" id="ID843b9638-b344-4ed1-96fa-b53991d30ff4" Created="2019-03-25T11:35:51.828Z" LastOpened="2019-03-25T12:34:03.180Z" LastSaved="2019-03-25T13:18:58.967Z" />
+    <Version xsi:type="ETAS.EE.Data.VersionInfoType" id="IDf10b1ed4-1dd3-426a-aa5a-2ee9e61b5c23" Created="3.7.6.132" LastSaved="3.7.6.132" MinRequired="3.3.1" />
+  </WorkspaceInfo>
+</Workspace>

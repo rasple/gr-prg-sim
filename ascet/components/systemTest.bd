@@ -5,7 +5,7 @@ blockdiagramSpecification Main {
 			connection_59, connection_62, connection_70, connection_74, connection_80, connection_83, connection_85, connection_87, connection_89
 		}
 	}
-	complexIdentifier components.randomNumberGenerator at (101, 171) size (14, 8) {
+	complexIdentifier components.randomNumberGenerator at (131, 171) size (14, 8) {
 		label at (0, 1)
 		methodCall components.randomNumberGenerator.random {
 			argumentPin a at (left, 0) connection_3
@@ -19,22 +19,22 @@ blockdiagramSpecification Main {
 			}
 		}
 	}
-	literal Numeric "3" at (41, 163) size (49, 0) {
+	literal Numeric "3" at (71, 163) size (49, 0) {
 		outPin {
 			connection_3
 		}
 	}
-	literal Numeric "23" at (41, 183) size (49, 0) {
+	literal Numeric "23" at (71, 183) size (49, 0) {
 		outPin {
 			connection_2
 		}
 	}
-	literal Numeric "78" at (41, 203) size (49, 0) {
+	literal Numeric "78" at (71, 203) size (49, 0) {
 		outPin {
 			connection_4
 		}
 	}
-	simpleIdentifier t at (331, 385) {
+	simpleIdentifier t at (331, 345) {
 		label at (0, -1)
 		inPin outPin {
 			connection_6
@@ -43,7 +43,7 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	simpleIdentifier components.DeltaTimeService.deltaT at (251, 335) {
+	simpleIdentifier components.DeltaTimeService.deltaT at (261, 285) {
 		label at (0, -1)
 		inPin outPin {
 			connection_60
@@ -52,9 +52,9 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	addition at (431, 356) {
+	addition at (431, 316) {
 		inPin connection_61 {
-			bendpoints (10, 0), (10, 20)
+			bendpoints (10, 0), (10, 30)
 		}
 		inPin connection_6 {
 			bendpoints (0, -10)
@@ -63,7 +63,7 @@ blockdiagramSpecification Main {
 			connection_71
 		}
 	}
-	simpleIdentifier t at (491, 365) {
+	simpleIdentifier t at (491, 325) {
 		label at (0, -1)
 		inPin connection_71
 		outPin {
@@ -89,7 +89,7 @@ blockdiagramSpecification Main {
 				bendpoints (0, -20)
 			}
 			argumentPin deltaTime at (left, 4) connection_69 {
-				bendpoints (0, -90), (100, -90)
+				bendpoints (0, -120)
 			}
 			returnPin at (right, 0) {
 				connection_81
@@ -117,7 +117,7 @@ blockdiagramSpecification Main {
 			connection_64
 		}
 	}
-	between at (631, 386) {
+	between at (631, 346) {
 		inPin connection_72 {
 			bendpoints (90, 0)
 		}
@@ -129,60 +129,58 @@ blockdiagramSpecification Main {
 			connection_75
 		}
 	}
-	literal Numeric "20.0" at (561, 383) size (49, 0) {
+	literal Numeric "20.0" at (561, 343) size (49, 0) {
 		outPin {
 			connection_49
 		}
 	}
-	literal Numeric "40.0" at (561, 403) size (49, 0) {
+	literal Numeric "40.0" at (561, 363) size (49, 0) {
 		outPin {
 			connection_20
 		}
 	}
-	literal Numeric "1.05" at (761, 413) size (49, 0) {
+	literal Numeric "1.05" at (721, 373) size (49, 0) {
 		outPin {
 			connection_77
 		}
 	}
-	simpleIdentifier faktor at (851, 395) {
+	simpleIdentifier faktor at (791, 355) {
 		label at (0, 9)
 		inPin connection_77 {
-			bendpoints (20, 0), (20, -20)
+			bendpoints (10, 0), (10, -20)
 		}
 		outPin sequenceCall {
 			inPin connection_76 {
-				bendpoints (20, 0), (20, -10)
+				bendpoints (50, 0)
 			}
 		}
 	}
-	simpleIdentifier faktor at (771, 465) {
+	simpleIdentifier faktor at (711, 425) {
 		label at (0, -1)
 		inPin connection_79
 		outPin sequenceCall {
-			inPin connection_78 {
-				bendpoints (0, 30)
-			}
+			inPin connection_78
 		}
 	}
-	literal Numeric "1.0" at (651, 463) size (49, 0) {
+	literal Numeric "1.0" at (651, 423) size (49, 0) {
 		outPin {
 			connection_79
 		}
 	}
-	typeConverter real at (251, 171) {
+	typeConverter real at (281, 171) {
 		inPin connection_31
 		outPin {
 			connection_63
 		}
 	}
-	simpleIdentifier sound at (961, 235) {
+	simpleIdentifier sound at (901, 235) {
 		label at (0, -1)
 		inPin connection_88
 		outPin sequenceCall {
 			inPin connection_87
 		}
 	}
-	simpleIdentifier dt_ at (351, 335) {
+	simpleIdentifier dt_ at (351, 285) {
 		label at (0, -1)
 		inPin connection_60
 		outPin {
@@ -202,7 +200,7 @@ blockdiagramSpecification Main {
 			inPin connection_62
 		}
 	}
-	ifElse at (711, 381) {
+	ifElse at (681, 341) {
 		inPin connection_75 {
 			bendpoints (0, -10)
 		}
@@ -226,12 +224,12 @@ blockdiagramSpecification Main {
 			inPin connection_80
 		}
 	}
-	complexIdentifier warningFunction_in at (771, 231) size (14, 8) {
+	complexIdentifier warningFunction_in at (681, 231) size (20, 8) {
 		label at (0, 1)
 		methodCall components.warningFunction.warningFunctionStatemachineTrigger {
-			methodVoidPin at (top, 0) sequenceCall at (-14, -36) {
+			methodVoidPin at (top, 2) sequenceCall at (-14, -36) {
 				inPin connection_82 {
-					bendpoints (0, 30), (-70, 30)
+					bendpoints (0, 30), (-100, 30)
 				}
 			}
 		}
@@ -245,14 +243,14 @@ blockdiagramSpecification Main {
 		}
 		elementCall (components.warningFunction.dt_) {
 			argumentPin at (left, 0) connection_86 {
-				bendpoints (360, 0)
+				bendpoints (0, -50)
 			}
 			sequenceCall {
 				inPin connection_85
 			}
 		}
 	}
-	if at (781, 121) {
+	if at (741, 121) {
 		inPin connection_84
 		ifControlFlowOutPin {
 			connection_82
@@ -261,7 +259,7 @@ blockdiagramSpecification Main {
 			inPin connection_83
 		}
 	}
-	if at (461, 441) {
+	if at (461, 401) {
 		inPin connection_94
 		ifControlFlowOutPin {
 			connection_91
@@ -270,7 +268,7 @@ blockdiagramSpecification Main {
 			inPin connection_89
 		}
 	}
-	simpleIdentifier drop at (301, 445) {
+	simpleIdentifier drop at (301, 405) {
 		label at (0, -1)
 		inPin outPin {
 			connection_93
@@ -279,19 +277,19 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	literal Boolean "false" at (521, 463) size (49, 0) {
+	literal Boolean "false" at (521, 423) size (49, 0) {
 		outPin {
 			connection_92
 		}
 	}
-	simpleIdentifier sound at (591, 465) {
+	simpleIdentifier sound at (591, 425) {
 		label at (0, -1)
 		inPin connection_92
 		outPin sequenceCall {
 			inPin connection_91
 		}
 	}
-	not at (411, 441) {
+	not at (411, 401) {
 		inPin connection_93
 		outPin {
 			connection_94
