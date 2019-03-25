@@ -4,12 +4,12 @@ static class systemTest {
 	real t = 0.0;
 	real faktor = 1.0;
 	boolean dropPressure = false;
-	warningFunction warningFunction_instance;
 	boolean sound;
 	real random = 1.0;
 	real dt_;
-	boolean drop=false;
+	boolean drop = false;
 	warningFunction warningFunction_in;
+	real llamp;
 
 	@generated("blockdiagram")
 	@thread

@@ -141,7 +141,7 @@ blockdiagramSpecification Main {
 		label at (0, 1)
 		methodCall components.comparePressure.comp {
 			argumentPin d_fl at (left, 0) connection_9 {
-				bendpoints (60, 0), (60, 110), (130, 110)
+				bendpoints (60, 0), (60, 120)
 			}
 			argumentPin d_fr at (left, 1) connection_10 {
 				bendpoints (0, 30)

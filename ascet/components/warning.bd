@@ -1,0 +1,77 @@
+classType components.warning
+blockdiagramSpecification Main {
+	methodBody warn {
+		outPin active {
+			connection_2, connection_4, connection_6, connection_8
+		}
+	}
+	complexIdentifier warningFunction_instance at (171, 221) size (24, 10) {
+		label at (0, 1)
+		methodCall components.warningFunction.warningFunctionStatemachineTrigger {
+			methodVoidPin at (top, 4) sequenceCall at (-14, -36) {
+				inPin connection_1 {
+					bendpoints (30, 0), (30, 4)
+				}
+			}
+		}
+		elementCall (components.warningFunction.on) {
+			returnPin at (right, 1) {
+				connection_7
+			}
+			sequenceCall {
+				inPin
+			}
+		}
+		elementCall (components.warningFunction.dt_) {
+			argumentPin at (left, 1) connection_5
+			sequenceCall {
+				inPin connection_4
+			}
+		}
+	}
+	if at (91, 181) {
+		inPin connection_3 {
+			bendpoints (10, 0), (10, 50)
+		}
+		ifControlFlowOutPin {
+			connection_1
+		}
+		sequenceCall {
+			inPin connection_2
+		}
+	}
+	methodArgumentIdentifier warn.drop at (31, 135) {
+		label at (0, -1)
+		outPin {
+			connection_9, connection_3
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	methodArgumentIdentifier warn.dT_ at (51, 235) {
+		label at (0, -1)
+		outPin {
+			connection_5
+		}
+		sequenceCall {
+			inPin
+		}
+	}
+	simpleIdentifier sound at (451, 235) {
+		label at (0, -1)
+		inPin connection_7
+		outPin sequenceCall {
+			inPin connection_6
+		}
+	}
+	simpleIdentifier lamp at (231, 155) {
+		label at (0, -1)
+		inPin connection_9 {
+			bendpoints (10, 0), (10, 20)
+		}
+		outPin sequenceCall {
+			inPin connection_8
+		}
+	}
+}

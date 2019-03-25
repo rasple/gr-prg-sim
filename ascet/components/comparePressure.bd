@@ -41,27 +41,23 @@ blockdiagramSpecification Main {
 			inPin
 		}
 	}
-	addition at (351, 96) {
-		inPin connection_1 {
-			bendpoints (60, 0), (60, 10)
-		}
+	addition at (351, 86) {
+		inPin connection_1
 		inPin connection_2 {
-			bendpoints (60, 0), (60, -10), (150, -10)
+			bendpoints (60, 0), (60, -20), (150, -20)
 		}
 		inPin connection_3 {
-			bendpoints (70, 0), (70, -30)
+			bendpoints (70, 0), (70, -40)
 		}
 		inPin connection_4 {
-			bendpoints (70, 0), (70, -30), (150, -30)
+			bendpoints (90, 0), (90, -30), (150, -30)
 		}
 		outPin {
 			connection_5
 		}
 	}
 	division at (481, 106) {
-		inPin connection_5 {
-			bendpoints (40, 0), (40, -10)
-		}
+		inPin connection_5
 		inPin connection_6 {
 			bendpoints (10, 0)
 		}
@@ -76,16 +72,16 @@ blockdiagramSpecification Main {
 	}
 	minimum at (461, 216) {
 		inPin connection_7 {
-			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (260, 70)
+			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (240, 70), (240, 130)
 		}
 		inPin connection_8 {
-			bendpoints (60, 0), (60, -10), (100, -10), (100, 40), (260, 40)
+			bendpoints (60, 0), (60, 10), (100, 10), (100, 70), (230, 70), (230, 100)
 		}
 		inPin connection_9 {
-			bendpoints (70, 0), (70, 30), (260, 30)
+			bendpoints (70, 0), (70, 60), (210, 60), (210, 90)
 		}
 		inPin connection_10 {
-			bendpoints (50, 0), (50, 30), (260, 30)
+			bendpoints (50, 0), (50, 60)
 		}
 		outPin {
 			connection_16
@@ -93,42 +89,38 @@ blockdiagramSpecification Main {
 	}
 	maximum at (461, 276) {
 		inPin connection_11 {
-			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (190, 70), (190, 130), (260, 130)
+			bendpoints (60, 0), (60, 10), (110, 10), (110, 70), (190, 70), (190, 190)
 		}
 		inPin connection_12 {
-			bendpoints (60, 0), (60, -10), (100, -10), (100, 40), (180, 40), (180, 100), (260, 100)
+			bendpoints (60, 0), (60, 10), (100, 10), (100, 70), (180, 70), (180, 160)
 		}
 		inPin connection_13 {
-			bendpoints (70, 0), (70, 30), (160, 30), (160, 90), (260, 90)
+			bendpoints (70, 0), (70, 60), (160, 60), (160, 150)
 		}
 		inPin connection_14 {
-			bendpoints (50, 0), (50, 30), (120, 30), (120, 70), (260, 70)
+			bendpoints (50, 0), (50, 60), (120, 60), (120, 120)
 		}
 		outPin {
 			connection_17
 		}
 	}
-	greaterOrEqual at (661, 156) {
+	greaterOrEqual at (621, 156) {
 		inPin connection_21
-		inPin connection_20 {
-			bendpoints (10, 0), (10, -150)
-		}
+		inPin connection_20
 		outPin {
 			connection_23
 		}
 	}
-	greaterOrEqual at (661, 226) {
-		inPin connection_22 {
-			bendpoints (20, 0), (20, -30)
-		}
+	greaterOrEqual at (631, 226) {
+		inPin connection_22
 		inPin connection_19 {
-			bendpoints (10, 0), (10, -80)
+			bendpoints (0, -30)
 		}
 		outPin {
 			connection_24
 		}
 	}
-	literal Numeric "1.005" at (591, 323) size (49, 0) {
+	literal Numeric "1.005" at (571, 273) size (49, 0) {
 		outPin {
 			connection_20, connection_19
 		}
@@ -144,29 +136,27 @@ blockdiagramSpecification Main {
 			connection_21
 		}
 	}
-	division at (571, 246) {
+	division at (561, 216) {
 		inPin connection_17 {
-			bendpoints (40, 0), (40, -50)
+			bendpoints (40, 0), (40, -80)
 		}
 		inPin connection_18 {
-			bendpoints (0, 80), (50, 80)
+			bendpoints (0, 80), (40, 80)
 		}
 		outPin {
 			connection_22
 		}
 	}
-	or at (741, 186) {
+	or at (671, 186) {
 		inPin connection_23 {
-			bendpoints (20, 0), (20, 20)
+			bendpoints (0, 20)
 		}
-		inPin connection_24 {
-			bendpoints (20, 0), (20, -30)
-		}
+		inPin connection_24
 		outPin {
 			connection_26
 		}
 	}
-	return at (791, 195) {
+	return at (721, 195) {
 		label at (0, 0)
 		inPin connection_26
 		sequenceCall {
