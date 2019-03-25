@@ -1,10 +1,12 @@
 package components;
 
+type int_m is integer 0 .. 300;
 static class randomNumberGenerator {
-	integer X = 0;
+	int_m X = 3;
+
 	@generated("blockdiagram")
-	public integer random(integer in a, integer in c, integer in m) {
-		X = (((X * a) + c) % m); // Main/random 1
+	public integer random(int_m in a, int_m in c, int_m in m) {
+		X = (((a * X) + c) % m); // Main/random 1
 		return X; // Main/random 2
 	}
 }
