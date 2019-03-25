@@ -200,8 +200,7 @@ for i = 2:1:n
     dataset(i) = mod(round((a * dataset(i-1) + c)), round(m))
 end
 ```
-
----
+___
 
 According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
 
