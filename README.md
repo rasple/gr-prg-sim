@@ -340,6 +340,59 @@ ___
 
 In order to test the detectDrop class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
 
+
+## D9 
+
+
+## D10
+
+
+![D7_second](images/random.png)\
+
+The random number generator uses the formula described in D5. The type int_m is required because otherwise the first expression is always zero.
+
+___
+
+```java
+type int_m is integer 0 .. 300;
+static class randomNumberGenerator {
+	int_m X = 3;
+
+	@generated("blockdiagram")
+	public integer random(int_m in a, int_m in c, int_m in m) {
+		X = (((a * X) + c) % m); // Main/random 1
+		return X; // Main/random 2
+	}
+}
+```
+___
+
+300 is the maximum because there will be no higher input values. 
+
+___
+
+```java
+static class randomNumberGeneratorTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),32);
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),119);
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),66);
+	}
+	
+
+}
+```
+___
+
+To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
+
+
+## D11  
+
+
+
 ## D12
 
 
