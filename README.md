@@ -167,7 +167,7 @@ If the difference between the maximum distance and the minimum distance is great
 
 ![D4 Model](images/D4_model.png)
 
-Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation] is pictured in red and [the second][Second Interpretation] is pictured in blue. A "1" means that a pressure drop has been detected.
+Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation (min-max)] is pictured in red and [the second][Second Interpretation (average)] is pictured in blue. A "1" means that a pressure drop has been detected.
 
 ![D4](images/D4.png)
 
@@ -503,7 +503,7 @@ ___
 
 To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
 
-## D11  
+## D11
 
 ## D12
 
