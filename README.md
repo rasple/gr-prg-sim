@@ -101,7 +101,7 @@ $$R_{FR} = \sqrt{W^2 + R_{RR}^2} \cdot signum(R_{RR})$$
 
 $$R_{FL} = \sqrt{W^2 + R_{RL}^2} \cdot signum(R_{RR})$$
 
-In `randomNumberGenerator()`:
+In `findRadius()`:
 
 ___
 
@@ -114,7 +114,6 @@ R_RR=R_RL+w;
 R_FR=(sqrt(w^2 + R_RR.^2)) .*sign(R_RR); 
 R_FL=(sqrt(w^2 + R_RL.^2)) .*sign(R_RR);
 ```
-
 ___
 
 To prevent errors, bad values like inf an NaN are replaced with 0.
@@ -149,15 +148,15 @@ The simulink model for D3 is provided with the velocities of the respective whee
 |----------|---------|-------------|--------------------------|
 |0.0       |700      |Variable-step|Automatic solver selection|
 
-Because we are dealing with small numbers these choice of solver does not really make any difference.
+Because we are not dealing with steep slopes in the signal these choice of solver does not really make any difference.
 
-### First Interpretation
+### First Interpretation (min-max)
 
 If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. A "1" in the blue/purple signal denominates if a tire pressure drop has been detected. The other signals represent the speeds of the respective wheels. This produces the following result:
 
 ![D3 MinMax](images/D3minmax.png)
 
-### Second Interpretation
+### Second Interpretation (average)
 
 The maximum and minimum velocities are compared to the average of all velocities. If either the minimum or maximum velocity differs by 0.5% an imbalance is detected. This produces the following result:
 
@@ -175,9 +174,11 @@ Again, using these two different approaches to detecting the imbalance as discus
 
 ![D4](images/D4.png)
 
-Here they are seperately:
+### Interpretation 1 (min-max)
 
 ![D4_minmax](images/D4_minmax.png)
+
+### Interpretation 2 (average)
 
 ![D4_average](images/D4_average.png)
 
@@ -257,19 +258,103 @@ D6.slx is merely a copy of D4.slx that uses different input variables instead of
 
 ### Synopsis
 
-We chose a period of 10000 for our test data. This means we will have to pick 10000 for m to prevent repetition in the random numbers. The prime factors of 10000 are 2 and 5. C can be chosen as any product of primes besides 2 and 5. We opted for 3 which is a prime itself. We picked A as $2 \cdot 2 \cdot 5 + 1 = 21$. 20 (=21-1) just like 10000 is divisible by 4.
+In order to use the random number generator for our simulation we need to make the generated data more usable and more realistic. As it stands, the random number generator creates data that is too "noisy" meaning it changes too often. 
+
+### Solution
+
+Reducing "noisiness" can be achieved by stretching the signal along the x-axis using `imresize()` from the image toolbox. The y-axis needs to be resized as well to calibrate the noise to fit our model. First we create noise for a short interval (N = 500) also using the N  as M value. We use A = 11 for all wheels and different C values for each individual wheel according to the requirements for non-repetition in a given period for the linear congruental number generator in [D5][D5]. We subtract $\frac{m}{2}$ to get a signal that averages on the x-axis. Finally we divide by M get a signal that is between -0.5 and 0.5. Then we can use the stretch-y factor to calibrate the noise to our liking. 
+
+___
+
+```matlab
+% D6
+
+% Generate noise for short interval
+
+n = 500;
+
+% stretch factor
+
+stretch_x = 5;
+stretch_y = 1;
+
+% Length of final signal
+
+tv_length = 56093;
+
+% Scale noise to be within bounds
+vrl_rand = (randomNumberGenerator(11, 11, n, 4, n) - n/2 ) ./ n * stretch_y;
+vrr_rand = (randomNumberGenerator(11, 31, n, 10, n) - n/2) ./ n * stretch_y;
+vfl_rand = (randomNumberGenerator(11, 23, n, 14, n) - n/2) ./ n * stretch_y;
+vfr_rand = (randomNumberGenerator(11, 121, n, 18, n) - n/2) ./ n * stretch_y;
+```
+
+___
+
+This in itself would result in a very busy signal. So we use the `imresize()` to stretch along the x-axis and finally stretch to the length of our timebase `tv` as specified in `curve.mat` to use it in simulink.
+
+___
+
+```matlab
+% Reduce "jumpiness" in noise by stretching
+vrl_rand = imresize(vrl_rand, [stretch_x*n 1], 'nearest');
+vrr_rand = imresize(vrr_rand, [stretch_x*n 1], 'nearest');
+vfl_rand = imresize(vfl_rand, [stretch_x*n 1], 'nearest');
+vfr_rand = imresize(vfr_rand, [stretch_x*n 1], 'nearest'); 
+
+vrl_rand = vrl_rand(1:n);
+vrr_rand = vrr_rand(1:n);
+vfl_rand = vfl_rand(1:n);
+vfr_rand = vfr_rand(1:n);
+
+vrl_rand = imresize(vrl_rand, [56093 1], 'nearest');
+vrr_rand = imresize(vrr_rand, [56093 1], 'nearest');
+vfl_rand = imresize(vfl_rand, [56093 1], 'nearest');
+vfr_rand = imresize(vfr_rand, [56093 1], 'nearest');
+
+vrl_simulink_rand = [tv, vrl_rand];
+vrr_simulink_rand = [tv, vrr_rand];
+vfl_simulink_rand = [tv, vfl_rand];
+vfr_simulink_rand = [tv, vfr_rand];
+
+```
+___
+
+Plotting the resulting signal with `tv` we get a nice spread of noise across the whole duration of the simulation.
+
+![D6_noise](images/D6_noise.png) 
+
+### Simulink test
+
+![D6_model](images/D6_model.png)
+
+We use a modified version of the [D4 model][D4] that adds an offset of $50\frac{km}{h}$ and uses the `vx_simulink_rand` variables from our workspace with our noise. Here are the incomming noise signals with the offset in $\frac{m}{s}$:
+
+![D6_noise_offset](images/D6_noise_offset.png)
+
+Using the two imbalance detections from [D3][D3] and [D4][D4] we can detect a tire pressure drop in our test data.
+
+![D6_minmax](images/D6_minmax_average.png)
+
+### Interpretation 1 (min-max)
+
+![D6_minmax](images/D6_minmax.png)
+
+### Interpretation 2 (average)
+
+![D6_average](images/D6_average.png)
 
 ## D7 
 
-![D7_first](images/detectDrop.png)\
+![D7_first](images/detectDrop.png)
 
 This function uses the distanceCalc class to calculate the distance each wheel travels. The comparePressure class returns true if there is an imbalance between the distanceCalc class and the distanceCalc class. These classes will be explained below.
 
-![D7_second](images/calcDis.png)\
+![D7_second](images/calcDis.png)
 
 The function returns the distance one wheel travels during one time slot. The speed of the wheel is giving in km/h the distance returned is in meter.
 
-![D7_third](images/comPressure.png)\
+![D7_third](images/comPressure.png)
 
 This function does the same as the average function described in D5.
 
@@ -319,9 +404,7 @@ static class comparePressureTest{
 	public void test4(){
 		Assert.assertFalse(comparePressure.comp(3.0,3.0,3.0, 2.985));
 	}
-	
 }
-
 ```
 ___
 
@@ -343,7 +426,6 @@ static class detectDropTest{
 	public void test2() {
 		Assert.assertTrue(detectDrop.detect(75.4, 70.0, 71.0,69.5,0.01 ));
 	}
-	
 }
 ```
 ___
@@ -354,11 +436,11 @@ In order to test the detectDrop class, it is only necessary to test once whether
 
 ## D9
 
-![D9_warn](images/warn.png)\
+![D9_warn](images/warn.png)
 
 The warning function sets the lamp on if the a drop is detected and use the statemachine to toggle the sound variable. 
 
-![D9_statemachine](images/state.png)\ 
+![D9_statemachine](images/state.png)
 
 The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning.
 dt_ is the delta time and an input variable. on is an output.
@@ -382,7 +464,7 @@ ___
 ## D10
 
 
-![D7_second](images/random.png)\
+![D7_second](images/random.png)
 
 The random number generator uses the formula described in D5. The type int_m is required because otherwise the first expression is always zero.
 
@@ -416,8 +498,6 @@ static class randomNumberGeneratorTest{
 		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),119);
 		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),66);
 	}
-	
-
 }
 ```
 
@@ -437,6 +517,6 @@ Using the steering wheel angle and lateral acceleration provided it should be po
 
 ## D14
 
-0.5% is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state.
+0.5 % is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state.
 
 
