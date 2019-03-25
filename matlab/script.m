@@ -20,7 +20,7 @@ vrr = matrix.vrr;
 vfl = matrix.vfl;
 vfr = matrix.vfr;
 tv = matrix.tv;
-sw = matrix.sw
+sw = matrix.sw;
 
 vrl_simulink = [tv, vrl];
 vrr_simulink = [tv, vrr];
@@ -33,11 +33,11 @@ vfr_simulink = [tv, vfr];
 
 % D3
 
-sim('D3', 700)
+sim('D3', 700);
 
 % D4
 
-sim('D4', 700)
+sim('D4', 700);
 
 % D5
 
@@ -45,30 +45,31 @@ sim('D4', 700)
 % Will generate data up to 80 km/h per wheel
 
 % Amount of data points
-n = 1000
+n = 100;
 
 % Create random test data
-vrl_simulink_noise = randomNumberGenerator(5, 3, 80, 1, n);
-vrr_simulink_noise = randomNumberGenerator(5, 3, 80, 2, n);
-vfl_simulink_noise = randomNumberGenerator(5, 3, 80, 3, n);
-vfr_simulink_noise = randomNumberGenerator(5, 3, 80, 4, n);
+vrl_simulink_noise = randomNumberGenerator(21, 23, 80, 1, n);
+vrr_simulink_noise = randomNumberGenerator(7, 13, 81, 2, n);
+vfl_simulink_noise = randomNumberGenerator(31, 17, 90, 3, n);
+vfr_simulink_noise = randomNumberGenerator(39, 11, 76, 4, n);
 
-figure('Name', 'Random Speeds', 'NumberTitle', 'off')
-subplot(4,1,1)
-plot(tv(1:n), vrl_simulink)
-title(V_{RL, rand})
+f2 = figure('Name', 'Random Speeds', 'NumberTitle', 'off');
+figure(f2)
+subplot(2,2,1)
+plot(tv(1:n), vrl_simulink_noise)
+title('V_{RL, noise}')
 
-subplot(4,1,2)
-plot(tv(1:n), vrr_simulink)
-title(V_{RR, rand})
+subplot(2,2,2)
+plot(tv(1:n), vrr_simulink_noise)
+title('V_{RR, noise}')
 
-subplot(4,1,3)
-plot(tv(1:n), vfl_simulink)
-title(V_{FL, rand})
+subplot(2,2,3)
+plot(tv(1:n), vfl_simulink_noise)
+title('V_{FL, noise}')
 
-subplot(4,1,4)
-plot(tv(1:n), vfr_simulink)
-title(V_{FR, rand})
+subplot(2,2,4)
+plot(tv(1:n), vfr_simulink_noise)
+title('V_{FR, noise}')
 
 % D6
 

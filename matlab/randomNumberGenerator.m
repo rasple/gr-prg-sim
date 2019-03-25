@@ -1,4 +1,4 @@
-function [dataset] = randomNumberGenerator(a, min, max, seed, n)
+function [dataset] = randomNumberGenerator(a, c, m, seed, n)
 % Generater random test data for D5
 % seed = X(0)
 % n = length
@@ -10,6 +10,6 @@ dataset = zeros(1, n);
 dataset(1) = seed;
 
 for i = 2:1:n
-    dataset(i) = mod(round((a * dataset(i-1) + min)),max);
+    dataset(i) = mod(round((a * dataset(i-1) + c)),m);
     %fprintf('(%d * %d + %d) mod %d\n',a,dataset(i-1),c,round(max))
 end

@@ -35,7 +35,7 @@ function [R_RR, R_RL, R_FR, R_FL] = findRadius(vrl, vrr, vfl, vfr, w, tv, sw)
 
 
     %Plotting
-    figure('Name','Radiuses','NumberTitle','off');
+    f1 = figure('Name','Radiuses','NumberTitle','off');
     
     subplot(5,2,1);
     plot(tv,vfl);
