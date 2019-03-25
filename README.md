@@ -505,11 +505,9 @@ ___
 
 To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
 
-
 ## D11  
 
 ## D12
-
 
 ## D13
 
