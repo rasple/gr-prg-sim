@@ -208,7 +208,11 @@ for i = 2:1:n
 end
 ```
 
+
 ___
+
+---
+
 
 According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
 
@@ -255,9 +259,176 @@ Files: D6.slx, script.m
 
 D6.slx is merely a copy of D4.slx that uses different input variables instead of `vx_simulink`. 
 
+<<<<<<< HEAD
 ### Synopsis
 
 We chose a period of 10000 for our test data. This means we will have to pick 10000 for m to prevent repetition in the random numbers. The prime factors of 10000 are 2 and 5. C can be chosen as any product of primes besides 2 and 5. We opted for 3 which is a prime itself. We picked A as $2 \codt 2 \cdot 5 + 1 = 21$. 20 (=21-1) just like 10000 is divisible by 4.
+=======
+## D7 
+
+![D7_first](images/detectDrop.png)\
+
+This function uses the distanceCalc class to calculate the distance each wheel travels. The comparePressure class returns true if there is an imbalance between the distanceCalc class and the distanceCalc class. These classes will be explained below.
+
+![D7_second](images/calcDis.png)\
+
+The function returns the distance one wheel travels during one time slot. The speed of the wheel is giving in km/h the distance returned is in meter.
+
+![D7_third](images/comPressure.png)\
+
+This function does the same as the average function described in D5.
+
+## D8
+
+
+___
+
+```java
+static class distanceCalcTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertNear(distanceCalc.calcDistance(3.6, 0.5), 0.5, 0.0001);
+		
+	}
+	
+}
+```
+___
+
+For the calcDistance funtion only one test case is necessary. The assert Near is required because the result is from the type real.
+
+___
+
+```java
+static class comparePressureTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertTrue(comparePressure.comp(5.0,5.0,5.0, 5.5));
+		
+	}
+	
+	@Test
+	public void test2(){
+		Assert.assertTrue(comparePressure.comp(3.0,3.0,3.0, 2.5));
+	}
+	
+	@Test
+	public void test3() {
+		Assert.assertFalse(comparePressure.comp(5.0,5.0,5.0, 5.03));
+		
+	}
+	
+	@Test
+	public void test4(){
+		Assert.assertFalse(comparePressure.comp(3.0,3.0,3.0, 2.985));
+	}
+	
+}
+
+```
+___
+
+The comparePressure class is tested with four tests. test1 and test2 test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
+test3 and test4 test that the function returns false if the distances are less than 0.5% apart. With these four tests all possibilities are covered. 
+
+
+___
+
+```java
+static class detectDropTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertFalse(detectDrop.detect(70.2, 70.0, 70.3,69.8,0.01 ));
+	}
+	
+	@Test
+	public void test2() {
+		Assert.assertTrue(detectDrop.detect(75.4, 70.0, 71.0,69.5,0.01 ));
+	}
+	
+}
+```
+___
+
+
+In order to test the detectDrop class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
+
+
+## D9
+
+![D9_warn](images/warn.png)\
+
+The warning function sets the lamp on if the a drop is detected and use the statemachine to toggle the sound variable. 
+
+![D9_statemachine](images/state.png)\ 
+
+The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning.
+dt_ is the delta time and an input variable. on is an output.
+
+___
+
+```java
+class warningFunction {
+	@get
+	private boolean on = false;
+	integer counter;
+	@set
+	private real dt_;
+	real restTime;
+	real base_rate = 0.8;
+	real break_rate = 0.1;
+```
+___
+
+## D10
+
+
+![D7_second](images/random.png)\
+
+The random number generator uses the formula described in D5. The type int_m is required because otherwise the first expression is always zero.
+
+___
+
+```java
+type int_m is integer 0 .. 300;
+static class randomNumberGenerator {
+	int_m X = 3;
+
+	@generated("blockdiagram")
+	public integer random(int_m in a, int_m in c, int_m in m) {
+		X = (((a * X) + c) % m); // Main/random 1
+		return X; // Main/random 2
+	}
+}
+```
+___
+
+300 is the maximum because there will be no higher input values. 
+
+___
+
+```java
+static class randomNumberGeneratorTest{
+	
+	@Test
+	public void test1() {
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),32);
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),119);
+		Assert.assertIntEqual(randomNumberGenerator.random(3,23,157),66);
+	}
+	
+
+}
+```
+___
+
+To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
+
+
+## D11  
 
 ## D12
 
