@@ -208,11 +208,7 @@ for i = 2:1:n
 end
 ```
 
-
 ___
-
----
-
 
 According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
 
@@ -259,11 +255,10 @@ Files: D6.slx, script.m
 
 D6.slx is merely a copy of D4.slx that uses different input variables instead of `vx_simulink`. 
 
-<<<<<<< HEAD
 ### Synopsis
 
-We chose a period of 10000 for our test data. This means we will have to pick 10000 for m to prevent repetition in the random numbers. The prime factors of 10000 are 2 and 5. C can be chosen as any product of primes besides 2 and 5. We opted for 3 which is a prime itself. We picked A as $2 \codt 2 \cdot 5 + 1 = 21$. 20 (=21-1) just like 10000 is divisible by 4.
-=======
+We chose a period of 10000 for our test data. This means we will have to pick 10000 for m to prevent repetition in the random numbers. The prime factors of 10000 are 2 and 5. C can be chosen as any product of primes besides 2 and 5. We opted for 3 which is a prime itself. We picked A as $2 \cdot 2 \cdot 5 + 1 = 21$. 20 (=21-1) just like 10000 is divisible by 4.
+
 ## D7 
 
 ![D7_first](images/detectDrop.png)\
@@ -280,7 +275,6 @@ This function does the same as the average function described in D5.
 
 ## D8
 
-
 ___
 
 ```java
@@ -294,6 +288,7 @@ static class distanceCalcTest{
 	
 }
 ```
+
 ___
 
 For the calcDistance funtion only one test case is necessary. The assert Near is required because the result is from the type real.
@@ -381,6 +376,7 @@ class warningFunction {
 	real base_rate = 0.8;
 	real break_rate = 0.1;
 ```
+
 ___
 
 ## D10
@@ -404,6 +400,7 @@ static class randomNumberGenerator {
 	}
 }
 ```
+
 ___
 
 300 is the maximum because there will be no higher input values. 
@@ -423,6 +420,7 @@ static class randomNumberGeneratorTest{
 
 }
 ```
+
 ___
 
 To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
