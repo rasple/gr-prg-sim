@@ -133,28 +133,35 @@ ___
 
 The resulting radiuses for each wheel together with their speeds and steering wheel are pictured below.
 
-![radiuses](images/d2.png)\
+![radiuses](images/d2.png)
 
 ## D3
 
 Files: D3.slx, script.m
 
-
 The simulink model for D3 is provided with the velocities of the respective wheels of the vehicle. It converts the values that are given in $\frac{km}{h}$ into $\frac{m}{s}$ by dividing by 3.6. As to the Requirement R2, we think there are at least two interpretations of the word "imbalance". Both are present in the simulink model.
 
-![D3 Model](images/D3_model.png)\
+![D3 Model](images/D3_model.png)
+
+### Settings
+
+|Start Time|Stop Time|Type         |Solver                    |
+|----------|---------|-------------|--------------------------|
+|0.0       |700      |Variable-step|Automatic solver selection|
+
+Because we are dealing with small numbers these choice of solver does not really make any difference.
 
 ### First Interpretation
 
 If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. A "1" in the blue/purple signal denominates if a tire pressure drop has been detected. The other signals represent the speeds of the respective wheels. This produces the following result:
 
-![D3 MinMax](images/D3minmax.png)\
+![D3 MinMax](images/D3minmax.png)
 
 ### Second Interpretation
 
 The maximum and minimum velocities are compared to the average of all velocities. If either the minimum or maximum velocity differs by 0.5% an imbalance is detected. This produces the following result:
 
-![D3 Average](images/D3average.png)\
+![D3 Average](images/D3average.png)
 
 ## D4
 
@@ -162,17 +169,17 @@ Files: D4.slx, script.m
 
 If the difference between the maximum distance and the minimum distance is greater then 0.5% the system will detect tire pressure drop. This is essentially the same as D3 but with the travelled distance of the wheels instead of their velocities. A delay block is used to get a $\delta S = S(t) - S(t-10)$ which is the travelled speed in the last 10 time units. As in [D3][D3] there are two approaches to detecting an "imbalance" both of which can be seen below.
 
-![D4 Model](images/D4_model.png)\
+![D4 Model](images/D4_model.png)
 
 Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation] is pictured in red and [the second][Second Interpretation] is pictured in blue. A "1" means that a pressure drop has been detected.
 
-![D4](images/D4.png)\
+![D4](images/D4.png)
 
 Here they are seperately:
 
-![D4_minmax](images/D4_minmax.png)\
+![D4_minmax](images/D4_minmax.png)
 
-![D4_average](images/D4_average.png)\
+![D4_average](images/D4_average.png)
 
 ## D5
 
@@ -200,6 +207,7 @@ for i = 2:1:n
     dataset(i) = mod(round((a * dataset(i-1) + c)), round(m))
 end
 ```
+
 ___
 
 According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
@@ -209,44 +217,47 @@ According to wikipedia for a random sequence of data, the parameters for a congr
 3. a-1 is a multiple of 4 if m is a multiple of 4
 4. c is nonzero
 
-Using these rules one can quickly determine four combinations for each wheel which fulfill all requirements.
+Using these rules one can quickly determine four combinations for each wheel which fulfill all requirements for a period of 100.
 
 |a |c |m | 
 |--|--|--|
-|21|23|80|
-| 7|13|81|
-|31|17|90|
-|39|11|76|
+|21|23|100|
+|11|13|100|
+|31|17|100|
+|41|11|100|
 
 The seed can be chosen arbitrarily as there is no rule concerning it.
+
 ___
 
 ```matlab
-% Generate own tire velocity data for testing using randomNumberGenerator()
-% Will generate data up to 80 km/h per wheel
+% Generate own tire velocity noise for testing using randomNumberGenerator()
 
 % Amount of data points
 n = 100;
 
 % Create random test data
-vrl_simulink_noise = randomNumberGenerator(21, 23, 80, 1, n);
-vrr_simulink_noise = randomNumberGenerator(7, 13, 81, 2, n);
-vfl_simulink_noise = randomNumberGenerator(31, 17, 90, 3, n);
-vfr_simulink_noise = randomNumberGenerator(39, 11, 76, 4, n);
+vrl_simulink_noise = randomNumberGenerator(21, 23, 100, 1, n);
+vrr_simulink_noise = randomNumberGenerator(11, 13, 100, 2, n);
+vfl_simulink_noise = randomNumberGenerator(31, 17, 100, 3, n);
+vfr_simulink_noise = randomNumberGenerator(41, 11, 100, 4, n);
 ```
+
 ___
 
 Plotted on a graph, the pseudo-random noise looks like this:
 
-![D4_average](images/noise.png)\
-
+![D4_average](images/noise.png)
 
 ## D6
 
 Files: D6.slx, script.m
 
-D6.slx is merely a copy of D4.slx that uses the variables `vx_simulink_noise` instead of `vx_simulink`.
+D6.slx is merely a copy of D4.slx that uses different input variables instead of `vx_simulink`. 
 
+### Synopsis
+
+We chose a period of 10000 for our test data. This means we will have to pick 10000 for m to prevent repetition in the random numbers. The prime factors of 10000 are 2 and 5. C can be chosen as any product of primes besides 2 and 5. We opted for 3 which is a prime itself. We picked A as $2 \codt 2 \cdot 5 + 1 = 21$. 20 (=21-1) just like 10000 is divisible by 4.
 
 ## D12
 
@@ -257,15 +268,6 @@ Using the steering wheel angle and lateral acceleration provided it should be po
 
 ## D14
 
+0.5% is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state.
 
-eclipse.buildId=7.4.0.201811051313
-java.version=1.8.0_191
-java.vendor=Oracle Corporation
-BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=de_DE
-Command-line arguments:  -os win32 -ws win32 -arch x86_64
-
-com.etas.ascet.eunit
-Error
-Sun Mar 24 23:12:15 CET 2019
-Problem occured during code generation
 
