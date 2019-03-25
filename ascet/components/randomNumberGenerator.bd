@@ -2,89 +2,89 @@ classType components.randomNumberGenerator
 blockdiagramSpecification Main {
 	methodBody random {
 		outPin active {
-			connection_12, connection_9
+			connection_27, connection_29
 		}
 	}
-	methodArgumentIdentifier random.a at (191, 105) {
+	simpleIdentifier X at (251, 135) {
 		label at (0, -1)
-		outPin {
-			connection_2
+		inPin outPin {
+			connection_21
 		}
 		sequenceCall {
 			inPin
 		}
 	}
-	methodArgumentIdentifier random.c at (281, 125) {
+	multiplication at (341, 96) {
+		inPin connection_22 {
+			bendpoints (20, 0), (20, 10)
+		}
+		inPin connection_21 {
+			bendpoints (20, 0), (20, -20)
+		}
+		outPin {
+			connection_23
+		}
+	}
+	methodArgumentIdentifier random.a at (261, 85) {
 		label at (0, -1)
 		outPin {
-			connection_4
+			connection_22
 		}
 		sequenceCall {
 			inPin
 		}
 	}
-	methodArgumentIdentifier random.m at (331, 155) {
-		label at (0, -1)
-		outPin {
-			connection_6
-		}
-		sequenceCall {
-			inPin
-		}
-	}
-	multiplication at (271, 76) {
-		inPin connection_11 {
-			bendpoints (10, 0), (10, 10)
-		}
-		inPin connection_2 {
-			bendpoints (20, 0), (20, -10)
-		}
-		outPin {
-			connection_3
-		}
-	}
-	addition at (331, 86) {
-		inPin connection_3
-		inPin connection_4 {
+	addition at (401, 106) {
+		inPin connection_23
+		inPin connection_24 {
 			bendpoints (10, 0)
 		}
 		outPin {
-			connection_5
+			connection_25
 		}
 	}
-	modulo at (401, 96) {
-		inPin connection_5
-		inPin connection_6 {
-			bendpoints (0, -20), (30, -20)
-		}
-		outPin {
-			connection_13
-		}
-	}
-	return at (551, 105) {
-		label at (0, 0)
-		inPin connection_14
-		sequenceCall {
-			inPin connection_9
-		}
-	}
-	simpleIdentifier X at (191, 65) {
+	methodArgumentIdentifier random.c at (351, 145) {
 		label at (0, -1)
-		inPin outPin {
-			connection_11
+		outPin {
+			connection_24
 		}
 		sequenceCall {
 			inPin
 		}
 	}
-	simpleIdentifier X at (451, 105) {
-		label at (0, -1)
-		inPin connection_13
+	modulo at (471, 116) {
+		inPin connection_25
+		inPin connection_26 {
+			bendpoints (10, 0)
+		}
 		outPin {
-			connection_14
+			connection_28
+		}
+	}
+	methodArgumentIdentifier random.m at (421, 145) {
+		label at (0, -1)
+		outPin {
+			connection_26
 		}
 		sequenceCall {
-			inPin connection_12
+			inPin
+		}
+	}
+	simpleIdentifier X at (521, 125) {
+		label at (0, -1)
+		inPin connection_28
+		outPin {
+			connection_30
+		}
+		sequenceCall {
+			inPin connection_27
+		}
+	}
+	return at (581, 125) {
+		label at (0, 0)
+		inPin connection_30
+		sequenceCall {
+			inPin connection_29
 		}
 	}
 }
