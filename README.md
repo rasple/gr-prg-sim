@@ -505,12 +505,13 @@ To test the random number generator, it is called three times in a row, since th
 
 ## D11
 
-![D11](images/test.PNG)\
+![D11](images/test.PNG)
 
-The system test uses the random number generator to generate values for the speed of the wheels. If the time is between 20 and 40 seconds, the front left tire has the 1.05 speed, so that an pressure drop is simulated.
-During this time the sound variable toggles in the SOS pattern. 
+The system test uses the random number generator to generate values for the speed of the wheels. If the time is between 20 and 40 seconds, the front left tire has the 1.05 speed, so that an pressure drop is simulated. During this time the sound variable toggles in the SOS pattern. 
 
 ## D12
+
+Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds. 
 
 ## D13
 
