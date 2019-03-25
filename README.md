@@ -505,6 +505,11 @@ To test the random number generator, it is called three times in a row, since th
 
 ## D11  
 
+![D11](images/test.PNG)\
+
+The system test uses the random number generator to generate values for the speed of the wheels. If the time is between 20 and 40 seconds, the front left tire has the 1.05 speed, so that an pressure drop is simulated.
+During this time the sound variable toggles in the SOS pattern. 
+
 ## D12
 
 ## D13
