@@ -512,6 +512,8 @@ During this time the sound variable toggles in the SOS pattern.
 
 ## D12
 
+
+
 ## D13
 
 Using the steering wheel angle and lateral acceleration provided it should be possible to remove bias in the wheels speeds caused by curve driving. However, seeing as there are almost always significant intervals of straight driving, it would be easier to just use these to measure (relatively) unbiased wheel speeds for pressure monitoring.
