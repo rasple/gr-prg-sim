@@ -262,6 +262,8 @@ The function returns the distance one wheel travels during one time slot. The sp
 
 This function does the same as the average function described in D5.
 
+##
+
 
 ## D12
 
