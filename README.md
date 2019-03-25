@@ -341,8 +341,31 @@ ___
 In order to test the detectDrop class, it is only necessary to test once whether it detects the pressure drop at different speeds if they exceed 0.5% and no pressure drop if they are below 0.5%. 
 
 
-## D9 
+## D9
 
+![D9_warn](images/warn.png)\
+
+The warning function sets the lamp on if the a drop is detected and use the statemachine to toggle the sound variable. 
+
+![D9_statemachine](images/state.png)\ 
+
+The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning.
+dt_ is the delta time and an input variable. on is an output.
+
+___
+
+```java
+class warningFunction {
+	@get
+	private boolean on = false;
+	integer counter;
+	@set
+	private real dt_;
+	real restTime;
+	real base_rate = 0.8;
+	real break_rate = 0.1;
+```
+___
 
 ## D10
 
