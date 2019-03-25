@@ -248,6 +248,20 @@ Files: D6.slx, script.m
 
 D6.slx is merely a copy of D4.slx that uses the variables `vx_simulink_noise` instead of `vx_simulink`.
 
+## D7 
+
+![D7_first](images/detectDrop.png)\
+
+This function uses the distanceCalc class to calculate the distance each wheel travels. The comparePressure class returns true if there is an imbalance between the distanceCalc class and the distanceCalc class. These classes will be explained below.
+
+![D7_second](images/calcDis.png)\
+
+The function returns the distance one wheel travels during one time slot. The speed of the wheel is giving in km/h the distance returned is in meter.
+
+![D7_third](images/comPressure.png)\
+
+This function does the same as the average function described in D5.
+
 
 ## D12
 
