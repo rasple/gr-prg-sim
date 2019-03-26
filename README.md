@@ -512,7 +512,7 @@ The system test uses the random number generator to generate values for the spee
 ## D12
 
 
-Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds. 
+Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds to recalibrate. 
 
 
 ## D13
@@ -521,6 +521,8 @@ Using the steering wheel angle and lateral acceleration provided it should be po
 
 ## D14
 
-0.5 % is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state.
+0.5 % is a really narrow definition of an imbalance and using the random number generator for noise creation it is easy to run into the imbalance state.
+The system test in Ascet and Matlab is not automatically checking if the result is how it should be. 
+
 
 
