@@ -512,7 +512,7 @@ The system test uses the random number generator to generate values for the spee
 ## D12
 
 
-Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds to recalibrate. 
+Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds. 
 
 
 ## D13
