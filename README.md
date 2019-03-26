@@ -208,7 +208,7 @@ end
 
 ___
 
-According to wikipedia for a random sequence of data, the parameters for a congruential number generator have to be chosen according to these rules:
+According to wikipedia for a random sequence of data that does not repeat itself the parameters for a congruential number generator have to be chosen according to these rules:
 
 1. c and m are relatively prime
 2. a-1 is divisible by all prime factors of m
@@ -519,6 +519,7 @@ Using the steering wheel angle and lateral acceleration provided it should be po
 
 ## D14
 
-0.5 % is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state.
+* 0.5 % is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state. 
+* There is no benefit to using distances for measuring pressure imbalance instead of velocities. Just adds more complexity.
 
 
