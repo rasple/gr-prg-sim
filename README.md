@@ -167,7 +167,7 @@ If the difference between the maximum distance and the minimum distance is great
 
 ![D4 Model](images/D4_model.png)
 
-Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation] is pictured in red and [the second][Second Interpretation] is pictured in blue. A "1" means that a pressure drop has been detected.
+Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation (min-max)] is pictured in red and [the second][Second Interpretation (average)] is pictured in blue. A "1" means that a pressure drop has been detected.
 
 ![D4](images/D4.png)
 
@@ -503,15 +503,16 @@ ___
 
 To test the random number generator, it is called three times in a row, since the previous value is required for the calculation. 
 
-## D11  
+## D11
 
-![D11](images/test.PNG)\
+![D11](images/test.PNG)
 
-The system test uses the random number generator to generate values for the speed of the wheels. If the time is between 20 and 40 seconds, the front left tire has the 1.05 speed, so that an pressure drop is simulated.
-During this time the sound variable toggles in the SOS pattern. 
+The system test uses the random number generator to generate values for the speed of the wheels. If the time is between 20 and 40 seconds, the front left tire has the 1.05 speed, so that an pressure drop is simulated. During this time the sound variable toggles in the SOS pattern. 
 
 ## D12
 
+
+Due to the nature of our ASCET-model a recalibration is not necessary as it only uses the distance that the wheels have travelled between two calls of the `detect()` function of the `detectDrop` class for pressure monitoring which is negligible. The Matlab [D4][D4] model uses the last 10 seconds and therefore one would only have to drive for 10 seconds. 
 
 
 ## D13
