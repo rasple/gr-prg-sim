@@ -139,14 +139,6 @@ The simulink model for D3 is provided with the velocities of the respective whee
 
 ![D3 Model](images/D3_model.png)
 
-### Settings
-
-|Start Time|Stop Time|Type         |Solver                    |
-|----------|---------|-------------|--------------------------|
-|0.0       |700      |Variable-step|Automatic solver selection|
-
-Because we are not dealing with steep slopes in the signal these choice of solver does not really make any difference.
-
 ### First Interpretation (min-max)
 
 If any two tires differ by 0.5% in their velocities, a drop is detected. This method is implemented by taking minimum and maximum values of the four velocities at any time and dividing them to see if the two most exteme wheels differ by 0.5%. A "1" in the blue/purple signal denominates if a tire pressure drop has been detected. The other signals represent the speeds of the respective wheels. This produces the following result:
@@ -159,6 +151,14 @@ The maximum and minimum velocities are compared to the average of all velocities
 
 ![D3 Average](images/D3average.png)
 
+### Settings
+
+|Start Time|Stop Time|Type         |Solver                    |
+|----------|---------|-------------|--------------------------|
+|0.0       |700      |Variable-step|Automatic solver selection|
+
+Because we are not dealing with steep slopes in the signal these choice of solver does not really make any difference.
+
 ## D4
 
 Files: D4.slx, script.m
@@ -167,7 +167,7 @@ If the difference between the maximum distance and the minimum distance is great
 
 ![D4 Model](images/D4_model.png)
 
-Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation (min-max)] is pictured in red and [the second][Second Interpretation (average)] is pictured in blue. A "1" means that a pressure drop has been detected.
+Again, using these two different approaches to detecting the imbalance as discussed in [D3][d3] we gets two different results. The [first approach][First Interpretation (min-max)] comparing the two most extreme tires is pictured in red and [the second][Second Interpretation (average)] comparing to the average of all wheels is pictured in blue. A "1" means that a pressure drop has been detected.
 
 ![D4](images/D4.png)
 
@@ -208,7 +208,7 @@ end
 
 ___
 
-According to wikipedia for a random sequence of data that does not repeat itself the parameters for a congruential number generator have to be chosen according to these rules:
+According to the wikipedia article for linear congruental number generators for a random sequence of data that does not repeat itself the parameters for a congruential number generator have to be chosen according to these rules:
 
 1. c and m are relatively prime
 2. a-1 is divisible by all prime factors of m
@@ -288,7 +288,7 @@ vfr_rand = (randomNumberGenerator(11, 121, n, 18, n) - n/2) ./ n * stretch_y;
 
 ___
 
-This in itself would result in a very busy signal. So we use the `imresize()` to stretch along the x-axis and finally stretch to the length of our timebase `tv` as specified in `curve.mat` to use it in simulink.
+This in itself would result in a very noisy signal. So we use the `imresize()` to stretch along the x-axis and finally stretch to the length of our timebase `tv` as specified in `curve.mat` to use it in simulink.
 
 ___
 
@@ -329,7 +329,7 @@ We use a modified version of the [D4 model][D4] that adds an offset of $50\frac{
 
 ![D6_noise_offset](images/D6_noise_offset.png)
 
-Using the two imbalance detections from [D3][D3] and [D4][D4] we can detect a tire pressure drop in our test data.
+Using the two imbalance detection methods [1][First Interpretation (min-max)] and [2][Second Interpretation (average)] from [D3][D3] and [D4][D4] we can detect a tire pressure drop in our test data.
 
 ![D6_minmax](images/D6_minmax_average.png)
 
@@ -347,7 +347,7 @@ By varying the seed of the random number generator we can run the simulation wit
 
 ![D7_first](images/detectDrop.png)
 
-This function uses the distanceCalc class to calculate the distance each wheel travels. The comparePressure class returns true if there is an imbalance between the distanceCalc class and the distanceCalc class. These classes will be explained below.
+This function uses the `distanceCalc` class to calculate the distance each wheel travels. The `comparePressure` class returns true if there is an imbalance between the `distanceCalc` class and the `distanceCalc` class. These classes will be explained below.
 
 ![D7_second](images/calcDis.png)
 
@@ -375,7 +375,7 @@ static class distanceCalcTest{
 
 ___
 
-For the calcDistance funtion only one test case is necessary. The assert Near is required because the result is from the type real.
+For the `calcDistance` funtion only one test case is necessary. The `assertNear` is required because the result is from the type real.
 
 ___
 
@@ -407,8 +407,8 @@ static class comparePressureTest{
 ```
 ___
 
-The `comparePressure` class is tested with four tests. test1 and test2 test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
-test3 and test4 test that the function returns false if the distances are less than 0.5% apart. With these four tests all possibilities are covered. 
+The `comparePressure` class is tested with four tests. `test1` and `test2` test if the function returns true if there is an imbalance of more than 0.5% of one wheel.
+`test3` and `test4` test that the function returns false if the distances are less than 0.5% apart. With these four tests all possibilities are covered. 
 
 
 ___
@@ -437,11 +437,11 @@ In order to test the `detectDrop` class, it is only necessary to test once wheth
 
 ![D9_warn](images/warn.png)
 
-The warning function sets the lamp on if the a drop is detected and use the statemachine to toggle the sound variable. 
+The warning function sets the lamp on if the a drop is detected and use the state machine to toggle the sound variable. 
 
 ![D9_statemachine](images/state.png)
 
-The statemachine has four states. The shortState is for the short sound, the longState is for the long sound. The breakState is for the brake between the sounds and the mockState starts the procedure from beginning. `dt_` is the delta time and an input variable. on is an output.
+The state machine has four states. The `shortState` is for the short sound, the `longState` is for the long sound. The `breakState` is for the brake between the sounds and the `mockState` starts the procedure from beginning. `dt_` is the delta time and an input variable. on is an output.
 
 ___
 
@@ -520,7 +520,7 @@ Using the steering wheel angle and lateral acceleration provided it should be po
 ## D14
 
 * 0.5 % is a really narrow definition of an imbalance and using the random number generator it is easy to run into the imbalance state. 
-* There is no benefit to using distances for measuring pressure imbalance instead of velocities. Just adds more complexity.
+* There is no benefit to using distances for measuring pressure imbalance instead of velocities. It just adds more complexity and slightly worse performance.
 * The system test in Ascet and Matlab is not automatically checking if the result is how it should be. 
 
 
